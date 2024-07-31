@@ -9,113 +9,19 @@ import Foundation
 import UIKit
 import FMDB
 
-//public struct O2ChatWidget {
-//    
-//    public static func createChatViewController(from viewController: UIViewController, name : String, email : String, phone : String, deviceToken : String, channelId : String) {
-//        // Load the storyboard and instantiate the ChatViewController
-//        let bundle = Bundle(for: ChatViewController.self)
-//        let storyboard = UIStoryboard(name: "MainChat", bundle: bundle)
-//        if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
-//            var dbChatObj = Singleton.sharedInstance.myLocalChatDB
-//            print("New Addition")
-//            CustomUserDefaultChat.sheard.saveChannelId(channelId: channelId)
-//            CustomUserDefaultChat.sheard.setFcmToken(token: deviceToken)
-//            CustomUserDefaultChat.sheard.saveCustomerName(customerName: name)
-//            CustomUserDefaultChat.sheard.saveCustomerEmail(CustomerEmail: email)
-//            CustomUserDefaultChat.sheard.saveCustomerPhoneNumber(customerPhoneNumber: phone)
-////            CustomUserDefaultChat.sheard.saveConversationUuID(conversationUuID: conversationUID)
-//            if !CustomUserDefaultChat.sheard.getConversationUuID().isEmpty  {
-//                CustomUserDefaultChat.sheard.saveConversationUuID(conversationUuID: CustomUserDefaultChat.sheard.getConversationUuID())
-//            }else{
-//                let conversationUID = CustomUserDefaultChat.sheard.generateUuID()
-//                CustomUserDefaultChat.sheard.saveConversationUuID(conversationUuID: conversationUID)
-//                
-//            }
-//            
-//            
-//            dbChatObj.CreateChatDatabase()
-//            chatViewController.modalPresentationStyle = .fullScreen
-//            viewController.present(chatViewController, animated: true, completion: nil)
-//        }
-//    }
-//    
-//    public func createDatabase() {
-//        var dbChatObj = Singleton.sharedInstance.myLocalChatDB
-//        print("New Addition")
-//        dbChatObj.CreateChatDatabase()
-//    }
-//}
-//
-//@objcMembers public class O2ChatWidgetLogout: NSObject {
-//    static public let sharedInstance = O2ChatWidgetLogout()
-//    public func logOutUser(){
-//        CustomUserDefaultChat.sheard.logOutChatUser()
-//    }
-//    
-//    public func isO2ChatWidgetNotification(_ info: [AnyHashable: Any]) -> Bool {
-//        // Implementation to check if a push notification is from Freshchat
-//        return false
-//    }
-//    
-//    public func handleRemoteNotification(_ info: [AnyHashable: Any], appState: UIApplication.State) {
-//        // Extract information from the notification payload
-//        let conversationUID = info["conversationuid"] as? String ?? ""
-//        let count = info["count"] as? String ?? "0"
-//
-//        // Initialize the ChatViewController
-//        let bundle = Bundle(for: ChatViewController.self)
-//        let storyboard = UIStoryboard(name: "MainChat", bundle: bundle)
-//        if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
-//            // Ensure the Singleton's local chat database is initialized
-//            let dbChatObj = Singleton.sharedInstance.myLocalChatDB
-//            print("New Addition")
-//
-//            // Handle conversation UUID
-//            if !CustomUserDefaultChat.sheard.getConversationUuID().isEmpty {
-//                CustomUserDefaultChat.sheard.saveConversationUuID(conversationUuID: CustomUserDefaultChat.sheard.getConversationUuID())
-//            } else {
-//                let conversationUID = CustomUserDefaultChat.sheard.generateUuID()
-//                CustomUserDefaultChat.sheard.saveConversationUuID(conversationUuID: conversationUID)
-//            }
-//
-//            // Create chat database if not exists
-//            dbChatObj.CreateChatDatabase()
-//
-//            // Set the presentation style
-//            chatViewController.modalPresentationStyle = .fullScreen
-//
-//            // Present the ChatViewController
-//            if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
-//                if appState == .active {
-//                    // If the app is active, present the view controller normally
-//                    rootViewController.present(chatViewController, animated: true, completion: nil)
-//                } else {
-//                    // If the app is in the background or inactive, ensure the root view controller is visible
-//                    rootViewController.dismiss(animated: false, completion: {
-//                        rootViewController.present(chatViewController, animated: true, completion: nil)
-//                    })
-//                }
-//            }
-//        }
-//    }
-//    
-//}
-
-import UIKit
-
-public class O2ChatWidget {
+public class O2Chat {
     // Singleton instance
-    public static let shared = O2ChatWidget()
+    public static let shared = O2Chat()
 
     // Private initializer to enforce singleton pattern
     private init() {}
     
     // Flag to track if the app is fully launched
     private var isAppFullyLaunched = false
-    private var isAppKilled = false
+    private var isAppKilledState = false
     
     // Method to create and present ChatViewController
-    public func presentChatViewController(from viewController: UIViewController, name: String, email: String, phone: String, deviceToken: String, channelId: String) {
+    public func presentO2ChatVC(from viewController: UIViewController, customerName: String, customerEmail: String, customerPhone: String, customerCNIC : String, deviceTokenFCM: String, channelId: String) {
         let bundle = Bundle(for: ChatViewController.self)
         let storyboard = UIStoryboard(name: "MainChat", bundle: bundle)
         if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
@@ -123,9 +29,10 @@ public class O2ChatWidget {
             print("New Addition")
             CustomUserDefaultChat.sheard.saveChannelId(channelId: channelId)
             CustomUserDefaultChat.sheard.setFcmToken(token: deviceToken)
-            CustomUserDefaultChat.sheard.saveCustomerName(customerName: name)
-            CustomUserDefaultChat.sheard.saveCustomerEmail(CustomerEmail: email)
-            CustomUserDefaultChat.sheard.saveCustomerPhoneNumber(customerPhoneNumber: phone)
+            CustomUserDefaultChat.sheard.saveCustomerName(customerName: customerName)
+            CustomUserDefaultChat.sheard.saveCustomerEmail(CustomerEmail: customerEmail)
+            CustomUserDefaultChat.sheard.saveCustomerPhoneNumber(customerPhoneNumber: customerPhone)
+            CustomUserDefaultChat.sheard.saveCustomerCnic(customerCnic: customerCNIC)
             if !CustomUserDefaultChat.sheard.getConversationUuID().isEmpty {
                 CustomUserDefaultChat.sheard.saveConversationUuID(conversationUuID: CustomUserDefaultChat.sheard.getConversationUuID())
             } else {
@@ -210,13 +117,13 @@ public class O2ChatWidget {
     }
     
     // Method to be called when app finishes launching
-    public func isAppKilledSetter(value : Bool) {
-        isAppKilled = value
+    public func isAppLauncedFromKilledStateSetter(value : Bool) {
+        isAppKilledState = value
     }
     
     // Method to be called when app finishes launching
-    public func isAppKilledGetter() -> Bool{
-        return isAppKilled
+    public func isAppLauncedFromKilledStateGetter() -> Bool{
+        return isAppKilledState
     }
     
     // Method to log out user
@@ -230,9 +137,3 @@ public class O2ChatWidget {
         return false
     }
 }
-
-//// Usage example for presenting the chat view controller from within the app
-//O2ChatManager.shared.presentChatViewController(from: someViewController, name: "User Name", email: "user@example.com", phone: "1234567890", deviceToken: "deviceToken123", channelId: "channelId123")
-//
-//// Usage example for handling a remote notification
-//O2ChatManager.shared.handleRemoteNotification(someNotificationInfo, appState: UIApplication.shared.applicationState)

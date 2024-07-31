@@ -1,0 +1,22 @@
+{
+  "name": "O2Chat",
+  "version": "0.1.0",
+  "summary": "A short description of O2Chat.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/sanjay.khatri02@outlook.com/O2Chat",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "sanjay.khatri02@outlook.com": "sanjay.khatri02@outlook.com"
+  },
+  "source": {
+    "git": "https://github.com/sanjay.khatri02@outlook.com/O2Chat.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "O2Chat/Classes/**/*"
+}
