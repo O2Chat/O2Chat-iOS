@@ -46,7 +46,7 @@ Pod::Spec.new do |s|
   s.dependency 'Firebase/Core'
   s.dependency 'Firebase/Messaging'
   s.dependency 'Kingfisher'
-  #s.dependency 'SVProgressHUD'
+  
   s.dependency 'Cosmos'
   
 #  s.ios.deployment_target = '10.0'
