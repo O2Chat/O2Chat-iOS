@@ -47,7 +47,6 @@
 		04E113C02C5A1EAB0080C0D8 /* MultiPDFCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E1135D2C5A1EAA0080C0D8 /* MultiPDFCVCell.swift */; };
 		04E113C12C5A1EAB0080C0D8 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E1135E2C5A1EAA0080C0D8 /* Singleton.swift */; };
 		04E113C22C5A1EAB0080C0D8 /* CustomClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E1135F2C5A1EAA0080C0D8 /* CustomClass.swift */; };
-		04E113C32C5A1EAB0080C0D8 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113602C5A1EAA0080C0D8 /* ApiClient.swift */; };
 		04E113C42C5A1EAB0080C0D8 /* JsonSerializingChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113612C5A1EAA0080C0D8 /* JsonSerializingChat.swift */; };
 		04E113C52C5A1EAB0080C0D8 /* ConversationCellFileNonLoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113622C5A1EAA0080C0D8 /* ConversationCellFileNonLoginUser.swift */; };
 		04E113C62C5A1EAB0080C0D8 /* Conversations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113632C5A1EAA0080C0D8 /* Conversations.swift */; };
@@ -105,6 +104,7 @@
 		04E113FB2C5A1EAB0080C0D8 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113982C5A1EAA0080C0D8 /* Toast.swift */; };
 		04E113FC2C5A1EAB0080C0D8 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113992C5A1EAA0080C0D8 /* CustomLabel.swift */; };
 		04E113FD2C5A1EAB0080C0D8 /* RecieveMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E1139A2C5A1EAA0080C0D8 /* RecieveMessage.swift */; };
+		04E113FF2C5A4C740080C0D8 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113FE2C5A4C730080C0D8 /* ApiClient.swift */; };
 		17413E5B898B87AE9D835718EFE49DA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		20A5699D6F9E901DB8DD73C87A69C840 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		4350F5F4B0B437F98C28AED689FC70C1 /* O2Chat-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CBB8F992E377377F90DDBA3767A6D4 /* O2Chat-dummy.m */; };
@@ -174,7 +174,6 @@
 		04E1135D2C5A1EAA0080C0D8 /* MultiPDFCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPDFCVCell.swift; sourceTree = "<group>"; };
 		04E1135E2C5A1EAA0080C0D8 /* Singleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		04E1135F2C5A1EAA0080C0D8 /* CustomClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomClass.swift; sourceTree = "<group>"; };
-		04E113602C5A1EAA0080C0D8 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		04E113612C5A1EAA0080C0D8 /* JsonSerializingChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonSerializingChat.swift; sourceTree = "<group>"; };
 		04E113622C5A1EAA0080C0D8 /* ConversationCellFileNonLoginUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCellFileNonLoginUser.swift; sourceTree = "<group>"; };
 		04E113632C5A1EAA0080C0D8 /* Conversations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversations.swift; sourceTree = "<group>"; };
@@ -232,6 +231,7 @@
 		04E113982C5A1EAA0080C0D8 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		04E113992C5A1EAA0080C0D8 /* CustomLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		04E1139A2C5A1EAA0080C0D8 /* RecieveMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecieveMessage.swift; sourceTree = "<group>"; };
+		04E113FE2C5A4C730080C0D8 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		060F2E859FFEBD9BFF1EB20369586FEF /* O2Chat-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "O2Chat-umbrella.h"; sourceTree = "<group>"; };
 		082E089BBC4D46DAA95C14AF3293DA42 /* Pods-O2Chat_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-O2Chat_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		0AB57BBE9F11D42135DD68BCFFF6BDC9 /* O2Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = O2Chat.release.xcconfig; sourceTree = "<group>"; };
@@ -318,6 +318,7 @@
 		04E113452C5A1EAA0080C0D8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				04E113FE2C5A4C730080C0D8 /* ApiClient.swift */,
 				04E113462C5A1EAA0080C0D8 /* TopicDataModel.swift */,
 				04E113472C5A1EAA0080C0D8 /* Constants.swift */,
 				04E113482C5A1EAA0080C0D8 /* ImageCache.swift */,
@@ -344,7 +345,6 @@
 				04E1135D2C5A1EAA0080C0D8 /* MultiPDFCVCell.swift */,
 				04E1135E2C5A1EAA0080C0D8 /* Singleton.swift */,
 				04E1135F2C5A1EAA0080C0D8 /* CustomClass.swift */,
-				04E113602C5A1EAA0080C0D8 /* ApiClient.swift */,
 				04E113612C5A1EAA0080C0D8 /* JsonSerializingChat.swift */,
 				04E113622C5A1EAA0080C0D8 /* ConversationCellFileNonLoginUser.swift */,
 				04E113632C5A1EAA0080C0D8 /* Conversations.swift */,
@@ -708,6 +708,7 @@
 				04E113B32C5A1EAB0080C0D8 /* TopicDataModelClass.swift in Sources */,
 				4350F5F4B0B437F98C28AED689FC70C1 /* O2Chat-dummy.m in Sources */,
 				04E113CC2C5A1EAB0080C0D8 /* PageControl.swift in Sources */,
+				04E113FF2C5A4C740080C0D8 /* ApiClient.swift in Sources */,
 				04E113F02C5A1EAB0080C0D8 /* WebResponseForTopics.swift in Sources */,
 				04E113EE2C5A1EAB0080C0D8 /* MenuTabViews.swift in Sources */,
 				04E113C52C5A1EAB0080C0D8 /* ConversationCellFileNonLoginUser.swift in Sources */,
@@ -732,7 +733,6 @@
 				04E113BB2C5A1EAB0080C0D8 /* TypingIndicatorListenerModel.swift in Sources */,
 				04E113D52C5A1EAB0080C0D8 /* ImagePicker.swift in Sources */,
 				04E113D42C5A1EAB0080C0D8 /* Common.swift in Sources */,
-				04E113C32C5A1EAB0080C0D8 /* ApiClient.swift in Sources */,
 				04E113FD2C5A1EAB0080C0D8 /* RecieveMessage.swift in Sources */,
 				04E113DE2C5A1EAB0080C0D8 /* Reachability.swift in Sources */,
 				04E113EB2C5A1EAB0080C0D8 /* ConversationCellImageLoginUser.swift in Sources */,
