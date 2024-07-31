@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MultiFilesCVCell" customModule="befiler" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="198" height="184"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="198" height="184"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iE5-Wb-CE9">
+                        <rect key="frame" x="-21" y="-16" width="240" height="216"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mhd-XP-4yC">
+                                <rect key="frame" x="73.666666666666657" y="8" width="93" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="93" id="2mu-LO-u87"/>
+                                    <constraint firstAttribute="height" constant="83" id="edZ-03-FFm"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3D-jc-VDS">
+                                <rect key="frame" x="15" y="96" width="210" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIg-aC-oad">
+                                <rect key="frame" x="15" y="101" width="210" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="240" id="0ob-Nl-tsT"/>
+                            <constraint firstItem="mhd-XP-4yC" firstAttribute="centerX" secondItem="iE5-Wb-CE9" secondAttribute="centerX" id="FC8-Te-Jt1"/>
+                            <constraint firstAttribute="trailing" secondItem="p3D-jc-VDS" secondAttribute="trailing" constant="15" id="FG5-xV-jmz"/>
+                            <constraint firstItem="p3D-jc-VDS" firstAttribute="leading" secondItem="iE5-Wb-CE9" secondAttribute="leading" constant="15" id="Sie-sP-az3"/>
+                            <constraint firstItem="p3D-jc-VDS" firstAttribute="top" secondItem="mhd-XP-4yC" secondAttribute="bottom" constant="5" id="Ty6-oq-iWX"/>
+                            <constraint firstAttribute="height" constant="216" id="W2J-1f-7Gj"/>
+                            <constraint firstItem="XIg-aC-oad" firstAttribute="leading" secondItem="iE5-Wb-CE9" secondAttribute="leading" constant="15" id="Z3l-fc-2Gt"/>
+                            <constraint firstAttribute="trailing" secondItem="XIg-aC-oad" secondAttribute="trailing" constant="15" id="aGn-eg-StS"/>
+                            <constraint firstItem="XIg-aC-oad" firstAttribute="top" secondItem="p3D-jc-VDS" secondAttribute="bottom" constant="5" id="pXs-Yz-KxW"/>
+                            <constraint firstItem="mhd-XP-4yC" firstAttribute="top" secondItem="iE5-Wb-CE9" secondAttribute="top" constant="8" id="w95-wj-6gL"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="iE5-Wb-CE9" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="HOM-px-c4j"/>
+                <constraint firstItem="iE5-Wb-CE9" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="mpo-SS-dno"/>
+            </constraints>
+            <size key="customSize" width="198" height="184"/>
+            <connections>
+                <outlet property="imageFile" destination="mhd-XP-4yC" id="glZ-P6-uHe"/>
+                <outlet property="labelFielSize" destination="XIg-aC-oad" id="B56-CX-1vC"/>
+                <outlet property="labelFileName" destination="p3D-jc-VDS" id="ZOC-Cc-MHu"/>
+            </connections>
+            <point key="canvasLocation" x="227.48091603053433" y="45.774647887323944"/>
+        </collectionViewCell>
+    </objects>
+</document>
