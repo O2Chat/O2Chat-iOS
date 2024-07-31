@@ -102,7 +102,6 @@
 		04E113F72C5A1EAB0080C0D8 /* WebResponseForOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113942C5A1EAA0080C0D8 /* WebResponseForOrganization.swift */; };
 		04E113F82C5A1EAB0080C0D8 /* TopicsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113952C5A1EAA0080C0D8 /* TopicsCollectionViewCell.swift */; };
 		04E113F92C5A1EAB0080C0D8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113962C5A1EAA0080C0D8 /* Color.swift */; };
-		04E113FA2C5A1EAB0080C0D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113972C5A1EAA0080C0D8 /* SceneDelegate.swift */; };
 		04E113FB2C5A1EAB0080C0D8 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113982C5A1EAA0080C0D8 /* Toast.swift */; };
 		04E113FC2C5A1EAB0080C0D8 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E113992C5A1EAA0080C0D8 /* CustomLabel.swift */; };
 		04E113FD2C5A1EAB0080C0D8 /* RecieveMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E1139A2C5A1EAA0080C0D8 /* RecieveMessage.swift */; };
@@ -230,7 +229,6 @@
 		04E113942C5A1EAA0080C0D8 /* WebResponseForOrganization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebResponseForOrganization.swift; sourceTree = "<group>"; };
 		04E113952C5A1EAA0080C0D8 /* TopicsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicsCollectionViewCell.swift; sourceTree = "<group>"; };
 		04E113962C5A1EAA0080C0D8 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		04E113972C5A1EAA0080C0D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04E113982C5A1EAA0080C0D8 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		04E113992C5A1EAA0080C0D8 /* CustomLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		04E1139A2C5A1EAA0080C0D8 /* RecieveMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecieveMessage.swift; sourceTree = "<group>"; };
@@ -401,7 +399,6 @@
 				04E113942C5A1EAA0080C0D8 /* WebResponseForOrganization.swift */,
 				04E113952C5A1EAA0080C0D8 /* TopicsCollectionViewCell.swift */,
 				04E113962C5A1EAA0080C0D8 /* Color.swift */,
-				04E113972C5A1EAA0080C0D8 /* SceneDelegate.swift */,
 				04E113982C5A1EAA0080C0D8 /* Toast.swift */,
 				04E113992C5A1EAA0080C0D8 /* CustomLabel.swift */,
 				04E1139A2C5A1EAA0080C0D8 /* RecieveMessage.swift */,
@@ -786,7 +783,6 @@
 				04E113C62C5A1EAB0080C0D8 /* Conversations.swift in Sources */,
 				04E113F72C5A1EAB0080C0D8 /* WebResponseForOrganization.swift in Sources */,
 				04E113CB2C5A1EAB0080C0D8 /* MultiImageCVCell.swift in Sources */,
-				04E113FA2C5A1EAB0080C0D8 /* SceneDelegate.swift in Sources */,
 				04E113CA2C5A1EAB0080C0D8 /* NotificationManager.swift in Sources */,
 				04E113B92C5A1EAB0080C0D8 /* ChatModule.swift in Sources */,
 				04E113F32C5A1EAB0080C0D8 /* ConversationsByUUID.swift in Sources */,

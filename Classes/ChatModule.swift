@@ -28,7 +28,7 @@ public class O2Chat {
             let dbChatObj = Singleton.sharedInstance.myLocalChatDB
             print("New Addition")
             CustomUserDefaultChat.sheard.saveChannelId(channelId: channelId)
-            CustomUserDefaultChat.sheard.setFcmToken(token: deviceToken)
+            CustomUserDefaultChat.sheard.setFcmToken(token: deviceTokenFCM)
             CustomUserDefaultChat.sheard.saveCustomerName(customerName: customerName)
             CustomUserDefaultChat.sheard.saveCustomerEmail(CustomerEmail: customerEmail)
             CustomUserDefaultChat.sheard.saveCustomerPhoneNumber(customerPhoneNumber: customerPhone)
@@ -85,14 +85,14 @@ public class O2Chat {
 
             if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
                 if appState == .active {
-                    self.isAppKilledSetter(value: false)
+                    self.isAppLauncedFromKilledStateSetter(value: false)
                     rootViewController.present(chatViewController, animated: true, completion: nil)
                 } else {
                     // Schedule the presentation for when the app becomes active
                     NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main) { [weak self] _ in
                         if self?.isAppFullyLaunched == true {
                             //DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                            self?.isAppKilledSetter(value: false)
+                            self?.isAppLauncedFromKilledStateSetter(value: false)
                                 rootViewController.present(chatViewController, animated: true, completion: nil)
                                 NotificationCenter.default.removeObserver(self!, name: UIApplication.didBecomeActiveNotification, object: nil)
                             //}
