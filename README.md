@@ -20,9 +20,9 @@ it, simply add the following line to your Podfile:
 pod 'O2Chat'
 ```
 
-## Author
+## Support
 
-sanjay.khatri02@outlook.com, sanjay.khatri02@outlook.com
+o2chat.io@gmail.com
 
 ## License
 
