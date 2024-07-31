@@ -2,7 +2,7 @@
 
 import Alamofire
 import SwiftyJSON
-import SVProgressHUD
+
 
 
 typealias ResponseClosure = (_ response:Any?, _ statusCode:Int)->Void
@@ -353,7 +353,7 @@ class ApiClient{
         //      SVProgressHUD.show()
         guard let url = URL(string: baseURL+userChatSetting) else {
             onFailure("Please check your internet connection")
-            SVProgressHUD.dismiss()
+            //SVProgressHUD.dismiss()
             return
         }
         //print(url)
@@ -400,7 +400,7 @@ class ApiClient{
         //      SVProgressHUD.show()
         guard let url = URL(string: baseURL+userChatSetting) else {
             onFailure("Please check your internet connection")
-            SVProgressHUD.dismiss()
+            //SVProgressHUD.dismiss()
             return
         }
         //print(url)
@@ -671,7 +671,7 @@ class ApiClient{
         //SVProgressHUD.show()
         guard let url = URL(string: baseURLChat+uploadFilesNew) else {
             onFailure("Please check your internet connection")
-            SVProgressHUD.dismiss()
+            //SVProgressHUD.dismiss()
             return
         }
         
