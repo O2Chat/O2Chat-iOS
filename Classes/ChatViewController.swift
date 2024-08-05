@@ -1668,7 +1668,27 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
                                 //self.convertIsoStrigToDate(strDate: self.conversationArrayList[indexPath.row].timestamp!)
                                 self.showDownloadIconFileNonLoginUser(uitableVc: aCell, position: indexPath.row)
                                 return aCell
-                            }else {
+                            }else if self.conversationArrayList[indexPath.row].files?[0].type == "mp4" || self.conversationArrayList[indexPath.row].files?[0].type == "application/mp4" || self.conversationArrayList[indexPath.row].files?[0].type == "mp3" || self.conversationArrayList[indexPath.row].files?[0].type == "application/mp3" || self.conversationArrayList[indexPath.row].files?[0].type == "m4a" || self.conversationArrayList[indexPath.row].files?[0].type == "application/m4a"{//"m4a"
+                                //View Audio type view for reciever
+                                
+                                let aCell = self.chatTableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifierCellFIleForNonLoginUser,for: indexPath) as! ConversationCellFileNonLoginUser
+                                aCell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
+                                aCell.ivImageIcon.image = loadImageFromPodBundle(named: "mp3")
+                                //aCell.ivImageIcon.image = UIImage(named: "csv")
+                                aCell.lblFileName.text = self.conversationArrayList[indexPath.row].content!
+                                aCell.lblTime.text = self.utcToLocal(dateStr: self.conversationArrayList[indexPath.row].timestamp ?? "")
+                                if self.conversationArrayList[indexPath.row].caption != "" && self.conversationArrayList[indexPath.row].caption != nil{
+                                    aCell.labelCaption.isHidden = false
+                                    aCell.labelCaption.text = self.conversationArrayList[indexPath.row].caption ?? ""
+                                }else{
+                                    aCell.labelCaption.isHidden = true
+                                    aCell.labelCaption.text = ""
+                                }
+                                //self.convertIsoStrigToDate(strDate: self.conversationArrayList[indexPath.row].timestamp!)
+                                self.showDownloadIconFileNonLoginUser(uitableVc: aCell, position: indexPath.row)
+                                return aCell
+                            }
+                            else {
                                 
                                 //View image type view for reciever
                                 let aCell = self.chatTableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifierForImageNonLogin,for: indexPath) as! ConversationCellImageNoLoginUser
@@ -1927,7 +1947,7 @@ extension ChatViewController {
             self.uiViewReconnection.isHidden = false //false
             self.lblReconnecting.text = "Reconnecting.."
             //temp lib
-            //self.ivReconnectingImage.image = UIImage.gif(name: "connecting")
+            self.ivReconnectingImage.image = UIImage.gif(name: "connecting")
             //self.ivReconnectingImage.loadGIF(named: "connecting")
         }
     }
@@ -1992,7 +2012,7 @@ extension ChatViewController {
             uitableVc.downloaduiView.isHidden = false
             uitableVc.ivDownload.isHidden = false
             //temp lib
-            //uitableVc.ivDownload.image = UIImage.gif(name: "cloudnew")
+            uitableVc.ivDownload.image = UIImage.gif(name: "cloudnew")
             //uitableVc.ivDownload.loadGIF(named: "cloudnew")
         }else{
             uitableVc.downloaduiView.isHidden = true
@@ -2005,7 +2025,7 @@ extension ChatViewController {
             uitableVc.downloaduiView.isHidden = false
             uitableVc.ivDownload.isHidden = false
             //temp lib
-            //uitableVc.ivDownload.image = UIImage.gif(name: "cloudnew")
+            uitableVc.ivDownload.image = UIImage.gif(name: "cloudnew")
             //uitableVc.ivDownload.loadGIF(named: "cloudnew")
         }else{
             uitableVc.downloaduiView.isHidden = true
@@ -2018,7 +2038,7 @@ extension ChatViewController {
             uitableVc.downloaduiView.isHidden = false
             uitableVc.ivDownload.isHidden = false
             //temp lib
-            //uitableVc.ivDownload.image = UIImage.gif(name: "cloudnew")
+            uitableVc.ivDownload.image = UIImage.gif(name: "cloudnew")
             //uitableVc.ivDownload.loadGIF(named: "cloudnew")
         }else{
             uitableVc.downloaduiView.isHidden = true
@@ -2031,7 +2051,7 @@ extension ChatViewController {
             uitableVc.downloaduiView.isHidden = false
             uitableVc.ivDownload.isHidden = false
             //temp lib
-//            uitableVc.ivDownload.image = UIImage.gif(name: "cloudnew")
+            uitableVc.ivDownload.image = UIImage.gif(name: "cloudnew")
             //uitableVc.ivDownload.loadGIF(named: "cloudnew")
         }else{
             uitableVc.downloaduiView.isHidden = true
@@ -2609,7 +2629,7 @@ extension ChatViewController {
         DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(1), execute: {
         
             // invoking a hub method that does not return a result
-            self.chatHubConnection!.invoke(method: "CustomerJoinedFromMobile",self.channelId, self.cusId,self.fcmtoken) { error in
+            self.chatHubConnection!.invoke(method: "CustomerJoinedFromMobile",self.channelId, self.cusId,self.fcmtoken,UtilsClassChat.sheard.callerAppType) { error in
                 if let error = error {
                     print("error: \(error)")
                 } else {

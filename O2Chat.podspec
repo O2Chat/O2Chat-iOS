@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'O2Chat'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'Connect, Chat, and Cherish'
 
 # This description is used to generate tags and improve search results.
@@ -35,8 +35,8 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*.{swift,h,m}'
   s.resources = 'Resources/**/*.{storyboard,xib,xcassets,png,jpeg,jpg,gif}'
   
+  s.frameworks = ['UIKit', 'Foundation', 'AVFoundation', 'AudioToolbox', 'CoreMedia', 'ImageIO', 'QuickLook', 'SystemConfiguration', 'Security', 'Photos', 'CoreServices', 'QuickLook', 'MobileCoreServices']
   
-  s.frameworks = ['UIKit', 'Foundation', 'QuickLook', 'Photos', 'MobileCoreServices']
   
   s.dependency 'Alamofire', '>= 4.0.0', '< 6.0'
   s.dependency 'SwiftyJSON'
