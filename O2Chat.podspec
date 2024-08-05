@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'O2Chat'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'Connect, Chat, and Cherish'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/O2Chat/O2Chat-iOS'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'sanjay.khatri02@outlook.com' => 'sanjay.khatri02@outlook.com' }
+  s.author           = { 'o2chat.io@gmail.com' => 'o2chat.io@gmail.com' }
   s.source           = { :git => 'https://github.com/O2Chat/O2Chat-iOS.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 

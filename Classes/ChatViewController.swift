@@ -594,7 +594,7 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
             print("Generate connectionID: \(self.chatHubConnection!.connectionId)")
 
         }
-        self.chatHubConnection?.invoke(method: "CustomerJoinedFromMobile",self.channelId, self.cusId,self.fcmtoken) { error in
+        self.chatHubConnection?.invoke(method: "CustomerJoinedFromMobile",self.channelId, self.cusId,self.fcmtoken,UtilsClassChat.sheard.callerAppType) { error in
             if let error = error {
                 print("error: \(error)")
             } else {
