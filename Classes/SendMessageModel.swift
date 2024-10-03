@@ -30,6 +30,7 @@ struct SendMessageModel: Codable {
     var pageName : String?
     var timezone : String?
     var caption : String?
+    var voiceDuration : String = ""
 //    var topicId : Int64?
 //    var topicMessage : String?
 //    var createdOn : Date?

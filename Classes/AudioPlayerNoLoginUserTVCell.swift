@@ -52,11 +52,6 @@ class AudioPlayerNoLoginUserTVCell: UITableViewCell {
     }
     
     func setTableData(conversationArrayList: [ConversationsByUUID], index: Int) {
-//        self.conversationArrayList = conversationArrayList
-//        self.index = index
-//        if let urlString = self.conversationArrayList[index].files?.first?.url, let url = URL(string: urlString) {
-//            self.configure(with: url, durationString: self.conversationArrayList[index].voiceDuration ?? "0")
-//        }
         
         self.conversationArrayList = conversationArrayList
         self.index = index
@@ -74,7 +69,6 @@ class AudioPlayerNoLoginUserTVCell: UITableViewCell {
     
     
     @IBAction func actionPlayPause(_ sender: UIButton) {
-        //self.togglePlayPause()
         guard let tableView = self.superview as? UITableView else { return }
         guard let indexPath = tableView.indexPath(for: self) else { return }
         
@@ -100,41 +94,18 @@ class AudioPlayerNoLoginUserTVCell: UITableViewCell {
         // If player is playing, pause it
         if player.rate > 0 {
             player.pause()
-            buttonPlay.setImage(UIImage(named: "play2"), for: .normal)
+            
+            buttonPlay.setImage(loadImageFromPodBundle(named: "play2"), for: .normal)
             stopTimer()  // Stop UI updates like seek bar, etc.
         } else {
             // If player is paused or stopped, start playing
             player.play()
-            buttonPlay.setImage(UIImage(named: "pause2"), for: .normal)
+            buttonPlay.setImage(loadImageFromPodBundle(named: "pause2"), for: .normal)
             updateSlider()  // Start updating the UI (slider)
             startTimer()  // Start the timer for the seek bar
         }
         
-        
-        //           if player?.rate == 0 {
-        //               player?.play()
-        //               buttonPlay.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-        //               startTimer()
-        //           } else {
-        //               player?.pause()
-        //               buttonPlay.setImage(UIImage(systemName: "play.fill"), for: .normal)
-        //               stopTimer()
-        //           }
-        
-//        guard let player = player else { return }
-//        
-//        if player.rate == 0 {
-//            // Play the audio
-//            player.play()
-//            buttonPlay.setImage(UIImage(named: "pause2"), for: .normal)
-//            updateSlider()
-//            startTimer()
-//        } else {
-//            // Pause the audio
-//            player.pause()
-//            buttonPlay.setImage(UIImage(named: "play2"), for: .normal)
-//            stopTimer()
-//        }
+      
     }
     
     func stopAudio() {
@@ -142,7 +113,7 @@ class AudioPlayerNoLoginUserTVCell: UITableViewCell {
         player?.pause()
 
         // Reset the UI
-        buttonPlay.setImage(UIImage(named: "play2"), for: .normal)
+        buttonPlay.setImage(loadImageFromPodBundle(named: "play2"), for: .normal)
         stopTimer()
         seekBarSlideer.value = 0
         currentTimeLabel.text = "00:00"
@@ -161,7 +132,7 @@ class AudioPlayerNoLoginUserTVCell: UITableViewCell {
     // Start downloading the audio file
     func downloadAudio(from url: URL) {
         
-        buttonPlay.setImage(UIImage(named: "loading"), for: .normal)
+        buttonPlay.setImage(loadImageFromPodBundle(named: "loading"), for: .normal)
         //ivFileStatus.image = UIImage(named: "loading") // Show a loading indicator
 
         let downloadTask = URLSession.shared.downloadTask(with: url) { [weak self] location, response, error in
@@ -288,17 +259,6 @@ class AudioPlayerNoLoginUserTVCell: UITableViewCell {
         }
     }
     
-    //        // Smooth slider update with frequent checks
-    //        @objc private func updateSlider() {
-    //            guard let currentTime = player?.currentTime().seconds else { return }
-    //            guard let duration = playerItem?.duration.seconds, duration > 0 else { return }
-    //
-    //            let newValue = Float(currentTime)
-    //            if seekBarSlideer.value != newValue {
-    //                seekBarSlideer.value = newValue
-    //                currentTimeLabel.text = formatTime(seconds: currentTime)
-    //            }
-    //        }
     
     @objc private func audioDidEnd() {
         resetUI()
@@ -325,7 +285,7 @@ class AudioPlayerNoLoginUserTVCell: UITableViewCell {
     func resetUI() {
         player?.seek(to: .zero)
         player?.pause()
-        buttonPlay.setImage(UIImage(named: "play2"), for: .normal)
+        buttonPlay.setImage(loadImageFromPodBundle(named: "play2"), for: .normal)
         seekBarSlideer.value = 0
         currentTimeLabel.text = "00:00"
         durationLabel.text = formatTime(seconds: playerItem?.duration.seconds ?? 0)
@@ -355,220 +315,20 @@ class AudioPlayerNoLoginUserTVCell: UITableViewCell {
         return image ?? UIImage()
     }
     
-    
-    //       // Update slider when value changes
-    //       @objc private func sliderValueChanged() {
-    //           if let duration = playerItem?.duration {
-    //               let totalSeconds = CMTimeGetSeconds(duration)
-    //               let value = Float64(seekBarSlideer.value) * totalSeconds
-    //               let seekTime = CMTime(seconds: value, preferredTimescale: 600)
-    //               player?.seek(to: seekTime)
-    //           }
-    //       }
-    //
-    //
-    //
-    //    // Configure the player with the provided URL and duration
-    //    func configure(with url: URL, durationString: String?) {
-    //        // Remove any previous observer
-    //        if let observer = playerObserver {
-    //            player?.removeTimeObserver(observer)
-    //            playerObserver = nil
-    //        }
-    //
-    //        // Remove any previous notification observer
-    //        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
-    //
-    //        playerItem = AVPlayerItem(url: url)
-    //        player = AVPlayer(playerItem: playerItem)
-    //
-    //        // Observe when audio finishes
-    //        NotificationCenter.default.addObserver(self, selector: #selector(audioDidEnd), name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
-    //
-    //        // Set up the duration label and slider max value
-    //        if let durationString = durationString {
-    //            let durationInSeconds = parseDuration(durationString: durationString)
-    //            seekBarSlideer.maximumValue = Float(durationInSeconds)
-    //            durationLabel.text = formatTime(seconds: durationInSeconds)
-    //        }
-    //
-    //        // Add periodic time observer to update slider and labels
-    //        playerObserver = player?.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 1, timescale: 2), queue: .main) { [weak self] time in
-    //            self?.updateSlider()
-    //        }
-    //    }
-    //
-    //    // Parse duration from "mm:ss" format to seconds
-    //    func parseDuration(durationString: String) -> Double {
-    //        let components = durationString.split(separator: ":")
-    //        guard components.count == 2,
-    //              let minutes = Double(components[0]),
-    //              let seconds = Double(components[1]) else {
-    //            return 0
-    //        }
-    //        return (minutes * 60) + seconds
-    //    }
-    //
-    //    // Update the slider based on current playback time
-    //    @objc private func updateSlider() {
-    //        guard let currentTime = player?.currentTime().seconds else { return }
-    //        guard let duration = playerItem?.duration.seconds, duration > 0 else { return }
-    //
-    //        // Update the slider value and the current time label
-    //        seekBarSlideer.value = Float(currentTime)
-    //        currentTimeLabel.text = formatTime(seconds: currentTime)
-    //    }
-    //
-    //    // Reset UI when the audio finishes
-    //    @objc private func audioDidEnd() {
-    //        resetUI()
-    //    }
-    //
-    //    // Start a timer to periodically update the UI
-    //    private func startTimer() {
-    //        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
-    //    }
-    //
-    //    // Stop the timer when paused or audio finishes
-    //    private func stopTimer() {
-    //        timer?.invalidate()
-    //        timer = nil
-    //    }
-    //
-    //    // Format time from seconds to "mm:ss"
-    //    private func formatTime(seconds: Double) -> String {
-    //        guard !seconds.isNaN && !seconds.isInfinite else {
-    //            return "00:00"
-    //        }
-    //
-    //        let minutes = Int(seconds) / 60
-    //        let remainingSeconds = Int(seconds) % 60
-    //        return String(format: "%02d:%02d", minutes, remainingSeconds)
-    //    }
-    //
-    //    // Reset the UI elements (button, slider, labels) when audio completes
-    //    private func resetUI() {
-    //        player?.seek(to: .zero)
-    //        player?.pause()
-    //
-    //        // Reset play button, slider, and time labels
-    //        buttonPlay.setImage(UIImage(systemName: "play.fill"), for: .normal)
-    //        seekBarSlideer.value = 0
-    //        currentTimeLabel.text = "00:00"
-    //        durationLabel.text = formatTime(seconds: playerItem?.duration.seconds ?? 0)
-    //
-    //        stopTimer()
-    //    }
-    //
-    //    override func prepareForReuse() {
-    //        super.prepareForReuse()
-    //        resetUI()
-    //        if let observer = playerObserver {
-    //            player?.removeTimeObserver(observer)
-    //            playerObserver = nil
-    //        }
-    //        NotificationCenter.default.removeObserver(self)
-    //    }
-    //
-    
-    
-    //    @objc private func playPauseTapped() {
-    //        if player?.rate == 0 {
-    //            player?.play()
-    //            buttonPlay.setTitle("Pause", for: .normal)
-    //            startTimer()
-    //        } else {
-    //            player?.pause()
-    //            buttonPlay.setTitle("Play", for: .normal)
-    //            stopTimer()
-    //        }
-    //    }
-    //
-    //    @objc private func sliderValueChanged() {
-    //        if let duration = playerItem?.duration {
-    //            let totalSeconds = CMTimeGetSeconds(duration)
-    //            let value = Float64(seekBarSlideer.value) * totalSeconds
-    //            let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
-    //            player?.seek(to: seekTime)
-    //        }
-    //    }
-    //
-    //    func configure(with url: URL, durationString: String?) {
-    //        playerItem = AVPlayerItem(url: url)
-    //        player = AVPlayer(playerItem: playerItem)
-    //
-    //        if let durationString = durationString {
-    //            let durationInSeconds = parseDuration(durationString: durationString)
-    //            seekBarSlideer.maximumValue = Float(durationInSeconds)
-    //            durationLabel.text = formatTime(seconds: durationInSeconds)
-    //        }
-    //
-    //        playerObserver = player?.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 1, timescale: 2), queue: .main) { [weak self] time in
-    //            self?.updateSlider()
-    //        }
-    //    }
-    //
-    //    func parseDuration(durationString: String) -> Double {
-    //        let components = durationString.split(separator: ":")
-    //        guard components.count == 2,
-    //              let minutes = Double(components[0]),
-    //              let seconds = Double(components[1]) else {
-    //            return 0
-    //        }
-    //        return (minutes * 60) + seconds
-    //    }
-    //
-    //    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-    //        if keyPath == "duration", let duration = playerItem?.duration.seconds, duration > 0.0 {
-    //            let durationText = formatTime(seconds: duration)
-    //            durationLabel.text = durationText
-    //            seekBarSlideer.maximumValue = Float(duration)
-    //        }
-    //    }
-    //
-    //    @objc private func audioDidEnd() {
-    //        player?.seek(to: .zero)
-    //        player?.pause()
-    //        buttonPlay.setTitle("Play", for: .normal)
-    //        seekBarSlideer.value = 0
-    //        currentTimeLabel.text = "00:00"
-    //        stopTimer()
-    //    }
-    //
-    //    @objc private func updateSlider() {
-    //        if let currentTime = player?.currentTime().seconds, let duration = playerItem?.duration.seconds {
-    //            print(Float(currentTime / duration))
-    //            seekBarSlideer.value = Float(currentTime / duration)
-    //            currentTimeLabel.text = formatTime(seconds: currentTime)
-    //        }
-    //    }
-    //
-    //    private func startTimer() {
-    //        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
-    //    }
-    //
-    //    private func stopTimer() {
-    //        timer?.invalidate()
-    //    }
-    //
-    //    private func formatTime(seconds: Double) -> String {
-    //        let minutes = Int(seconds) / 60
-    //        let remainingSeconds = Int(seconds) % 60
-    //        return String(format: "%02d:%02d", minutes, remainingSeconds)
-    //    }
-    //
-    //    override func prepareForReuse() {
-    //        super.prepareForReuse()
-    //        player?.pause()
-    //        player = nil
-    //        playerItem = nil
-    //        stopTimer()
-    //        buttonPlay.setTitle("Play", for: .normal)
-    //        currentTimeLabel.text = "00:00"
-    //        seekBarSlideer.value = 0
-    //        durationLabel.text = "00:00"
-    //        NotificationCenter.default.removeObserver(self)
-    //    }
+    // Function to load an image from the pod's bundle
+    func loadImageFromPodBundle(named imageName: String, ofType type: String) -> UIImage? {
+        let bundle = Bundle(for: ChatViewController.self)
+        if let imagePath = bundle.path(forResource: imageName, ofType: type) {
+            return UIImage(contentsOfFile: imagePath)
+        }
+        return nil
+    }
+
+    // Alternative function using UIImage(named:in:compatibleWith:) initializer
+    func loadImageFromPodBundle(named imageName: String) -> UIImage? {
+        let bundle = Bundle(for: ChatViewController.self)
+        return UIImage(named: imageName, in: bundle, compatibleWith: nil)
+    }
     
     
 }

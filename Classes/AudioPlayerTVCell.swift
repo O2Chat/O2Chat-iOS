@@ -18,8 +18,8 @@ class AudioPlayerTVCell: UITableViewCell {
     var timer: Timer?
     private var isTogglingPlayPause = false
     var isPlayPauseInProgress = false
-
-
+    
+    
     
     var index : Int = 0
     var conversationArrayList: [ConversationsByUUID] = [ConversationsByUUID]()
@@ -49,17 +49,13 @@ class AudioPlayerTVCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
-       // self.viewPlayer.layer.backgroundColor = UIColor.bgMessage.cgColor
+        // self.viewPlayer.layer.backgroundColor = UIColor.bgMessage.cgColor
         self.viewPlayer.clipsToBounds = true
         self.viewPlayer.layer.cornerRadius = 5
     }
     
     func setTableData(conversationArrayList: [ConversationsByUUID], index: Int) {
-//        self.conversationArrayList = conversationArrayList
-//        self.index = index
-//        if let urlString = self.conversationArrayList[index].files?.first?.url, let url = URL(string: urlString) {
-//            self.configure(with: url, durationString: self.conversationArrayList[index].voiceDuration ?? "0")
-//        }
+        
         
         self.conversationArrayList = conversationArrayList
         self.index = index
@@ -67,7 +63,7 @@ class AudioPlayerTVCell: UITableViewCell {
             self.localFileURL = getLocalFileURL(for: url)
             self.isAudioDownloaded = FileManager.default.fileExists(atPath: self.localFileURL?.path ?? "")
             if self.isAudioDownloaded {
-               // ivFileStatus.image = UIImage(named: "completed") // Mark as downloaded
+                // ivFileStatus.image = UIImage(named: "completed") // Mark as downloaded
             } else {
                 //ivFileStatus.image = UIImage(named: "not_downloaded") // Mark as not downloaded
             }
@@ -103,9 +99,9 @@ extension AudioPlayerTVCell{
     func stopAudio() {
         // Pause the player if it's playing
         player?.pause()
-
+        
         // Reset the UI
-        buttonPlay.setImage(UIImage(named: "play2"), for: .normal)
+        buttonPlay.setImage(loadImageFromPodBundle(named: "play2"), for: .normal)
         stopTimer()
         seekBarSlider.value = 0
         currentTimeLabel.text = "00:00"
@@ -116,9 +112,9 @@ extension AudioPlayerTVCell{
         guard let player = player else { return }
         
         
-            player.pause()
-            buttonPlay.setImage(UIImage(named: "play2"), for: .normal)
-            stopTimer()  // Stop UI updates like seek bar, etc.
+        player.pause()
+        buttonPlay.setImage(loadImageFromPodBundle(named: "play2"), for: .normal)
+        stopTimer()  // Stop UI updates like seek bar, etc.
         
         
     }
@@ -130,56 +126,17 @@ extension AudioPlayerTVCell{
         // If player is playing, pause it
         if player.rate > 0 {
             player.pause()
-            buttonPlay.setImage(UIImage(named: "play2"), for: .normal)
+            buttonPlay.setImage(loadImageFromPodBundle(named: "play2"), for: .normal)
             stopTimer()  // Stop UI updates like seek bar, etc.
         } else {
             // If player is paused or stopped, start playing
             player.play()
-            buttonPlay.setImage(UIImage(named: "pause2"), for: .normal)
+            buttonPlay.setImage(loadImageFromPodBundle(named: "pause2"), for: .normal)
             updateSlider()  // Start updating the UI (slider)
             startTimer()  // Start the timer for the seek bar
         }
         
-//        if player?.rate == 0 {
-//            // Play the audio and update the slider immediately
-//            player?.play()
-//            buttonPlay.setImage(UIImage(named : "pause2"), for: .normal)
-//            
-//            // Update the slider immediately when playback starts
-//            updateSlider()  // <-- Trigger immediate update here
-//            startTimer()
-//        } else {
-//            player?.pause()
-//            buttonPlay.setImage(UIImage(named: "play2"), for: .normal)
-//            stopTimer()
-//        }
         
-        
-//        // Prevent rapid taps from causing issues
-//        guard !isPlayPauseInProgress else { return }
-//        
-//        isPlayPauseInProgress = true
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
-//            self?.isPlayPauseInProgress = false
-//        }
-//        
-//        guard let player = player else { return }
-//            
-//        
-//        if player.rate == 0 {
-//            // Play the audio
-//            player.play()
-//            buttonPlay.setImage(UIImage(named: "pause2"), for: .normal)
-//            updateSlider()
-//            startTimer()
-//            
-//        } else {
-//            // Pause the audio
-//            
-//            player.pause()
-//            buttonPlay.setImage(UIImage(named: "play2"), for: .normal)
-//            stopTimer()
-//        }
         
     }
     
@@ -194,21 +151,21 @@ extension AudioPlayerTVCell{
     
     // Start downloading the audio file
     func downloadAudio(from url: URL) {
-        buttonPlay.setImage(UIImage(named: "loading"), for: .normal)
-       // ivFileStatus.image = UIImage(named: "loading") // Show a loading indicator
-
+        buttonPlay.setImage(loadImageFromPodBundle(named: "loading"), for: .normal)
+        // ivFileStatus.image = UIImage(named: "loading") // Show a loading indicator
+        
         let downloadTask = URLSession.shared.downloadTask(with: url) { [weak self] location, response, error in
             guard let self = self, error == nil, let location = location else {
                 DispatchQueue.main.async {
-                   // self?.ivFileStatus.image = UIImage(named: "error") // Show error
+                    // self?.ivFileStatus.image = UIImage(named: "error") // Show error
                 }
                 return
             }
-
+            
             let fileManager = FileManager.default
             let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
             let destinationURL = documentsDirectory?.appendingPathComponent(url.lastPathComponent)
-
+            
             do {
                 if let destinationURL = destinationURL, fileManager.fileExists(atPath: destinationURL.path) {
                     try fileManager.removeItem(at: destinationURL)
@@ -231,7 +188,7 @@ extension AudioPlayerTVCell{
                 }
             }
         }
-
+        
         downloadTask.resume()
     }
     
@@ -241,16 +198,16 @@ extension AudioPlayerTVCell{
             player?.removeTimeObserver(observer)
             playerObserver = nil
         }
-
+        
         NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
         
         // Create a new AVPlayerItem with the downloaded file URL
         playerItem = AVPlayerItem(url: url)
         player = AVPlayer(playerItem: playerItem)
-
+        
         // Add observer for when audio finishes playing
         NotificationCenter.default.addObserver(self, selector: #selector(audioDidEnd), name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
-
+        
         // Set up periodic observer for updating the seek bar
         playerObserver = player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.1, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), queue: .main) { [weak self] time in
             self?.updateSlider()
@@ -294,7 +251,7 @@ extension AudioPlayerTVCell{
             durationLabel.text = formatTime(seconds: duration)
         }
     }
-
+    
     private func getLocalFileURL(for url: URL) -> URL? {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         return documentsDirectory?.appendingPathComponent(url.lastPathComponent)
@@ -321,17 +278,6 @@ extension AudioPlayerTVCell{
         }
     }
     
-    //        // Smooth slider update with frequent checks
-    //        @objc private func updateSlider() {
-    //            guard let currentTime = player?.currentTime().seconds else { return }
-    //            guard let duration = playerItem?.duration.seconds, duration > 0 else { return }
-    //
-    //            let newValue = Float(currentTime)
-    //            if seekBarSlideer.value != newValue {
-    //                seekBarSlideer.value = newValue
-    //                currentTimeLabel.text = formatTime(seconds: currentTime)
-    //            }
-    //        }
     
     @objc private func audioDidEnd() {
         resetUI()
@@ -358,7 +304,7 @@ extension AudioPlayerTVCell{
     func resetUI() {
         player?.seek(to: .zero)
         player?.pause()
-        buttonPlay.setImage(UIImage(named: "play2"), for: .normal)
+        buttonPlay.setImage(loadImageFromPodBundle(named: "play2"), for: .normal)
         seekBarSlider.value = 0
         currentTimeLabel.text = "00:00"
         durationLabel.text = formatTime(seconds: playerItem?.duration.seconds ?? 0)
@@ -386,6 +332,21 @@ extension AudioPlayerTVCell{
         UIGraphicsEndImageContext()
         
         return image ?? UIImage()
+    }
+    
+    // Function to load an image from the pod's bundle
+    func loadImageFromPodBundle(named imageName: String, ofType type: String) -> UIImage? {
+        let bundle = Bundle(for: ChatViewController.self)
+        if let imagePath = bundle.path(forResource: imageName, ofType: type) {
+            return UIImage(contentsOfFile: imagePath)
+        }
+        return nil
+    }
+
+    // Alternative function using UIImage(named:in:compatibleWith:) initializer
+    func loadImageFromPodBundle(named imageName: String) -> UIImage? {
+        let bundle = Bundle(for: ChatViewController.self)
+        return UIImage(named: imageName, in: bundle, compatibleWith: nil)
     }
     
 }

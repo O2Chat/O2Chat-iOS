@@ -31,6 +31,10 @@ struct RecieveMessage: Decodable {
     var pageId : String?
     var pageName : String?
     var caption : String?
+    var voiceDuration : String = ""
+    var source : String?
+    //var status : String?
+    var whatsAppCanReply : Bool?
     //var createdOn : Date?
     var files : [FileDataModel]? = [FileDataModel]()
 
@@ -59,6 +63,10 @@ struct RecieveMessage: Decodable {
         case pageId = "pageId"
         case pageName = "pageName"
         case caption = "caption"
+        case voiceDuration = "voiceDuration"
+        case source = "source"
+       // case status = "status"
+        case whatsAppCanReply = "whatsAppCanReply"
         case files = "files"
         
     }
@@ -87,6 +95,10 @@ struct RecieveMessage: Decodable {
         pageId = try values.decodeIfPresent(String.self, forKey: .pageId)
         pageName = try values.decodeIfPresent(String.self, forKey: .pageName)
         caption = try values.decodeIfPresent(String.self, forKey: .caption)
+        voiceDuration = try values.decodeIfPresent(String.self, forKey: .voiceDuration) ?? ""
+        source = try values.decodeIfPresent(String.self, forKey: .source)
+        //status = try values.decodeIfPresent(String.self, forKey: .status)
+        whatsAppCanReply = try values.decodeIfPresent(Bool.self, forKey: .whatsAppCanReply)
         files = try values.decodeIfPresent(Array.self, forKey: .files)
     }
 

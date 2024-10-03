@@ -56,6 +56,7 @@ struct ConversationsByUUID : Codable {
     var topicMessage : String?
     var rating : Int?
     var feedback : String?
+    var voiceDuration : String?
     var isFeedback : Bool?
     var files : [FileDataModel]?
 }

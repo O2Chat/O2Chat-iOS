@@ -21,6 +21,11 @@ import Kingfisher
 //import BSImagePicker
 import PhotosUI
 
+extension Notification.Name {
+    static let playAudioTapped = Notification.Name("playAudioTapped")
+    static let playNoLoginAudioTapped = Notification.Name("playNoLoginAudioTapped")
+}
+
 
 var conversationByZeroId : [ConversationsByUUID]!
 public class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -28,6 +33,7 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
     var timer = Timer()
     var timerDatabase : Timer?
     
+    var voiceDuration : String = ""
     //SignalR Interval
     var reconnectInterval: TimeInterval = 5.0 // Initial reconnect interval
     let maxReconnectInterval: TimeInterval = 60.0 // Maximum reconnect interval
@@ -76,6 +82,8 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
     var isCalledFromPreviewActivity : Bool = false
     
     var tokenResult : String = ""
+    
+    var currentlyPlayingCell: UITableViewCell?
 
     //constrants for cell identifiers of tableviews
     let cellReuseIdentifier = "CellNologinUser"
@@ -85,6 +93,8 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
     let cellReuseIdentifierCellFIleForLoginUser = "CellFIleForLoginUser"
     let cellReuseIdentifierCellFIleForNonLoginUser = "CellForginUserFileNonLoginUser"
     let SystemsTVCell = "SystemsTVCell"
+    let cellForAudioPlayerNoLoginUser = "AudioPlayerNoLoginUserTVCell"
+    let cellForAudioPlayerLoginUser = "AudioPlayerTVCell"
     
     let ActivityLoaderCell = "ActivityLoaderCell"
     //Base url for chatHUB
@@ -130,6 +140,35 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
     private var conversationArrayList :[ConversationsByUUID] = [ConversationsByUUID]()
     private var topicsArrayList :[TopicDataModelClass] = [TopicDataModelClass]()
     private var reconnectAlert: UIAlertController?
+    
+    var audioRecorder: AVAudioRecorder?
+    var timerAudio: Timer?
+    var seconds = 0
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBOutlet weak var btnPlayPause: UIButton!
+    @IBOutlet weak var btnStopResumee: UIButton!
+    @IBOutlet weak var buttonDelete: UIButton!
+    
+    @IBOutlet weak var viewStop: UIView!
+    @IBOutlet weak var viewRecord: UIView!
+    
+    @IBOutlet weak var viewSendAudio: UIView!
+    
+    @IBOutlet weak var imagePlay: UIImageView!
+    @IBOutlet weak var imageStop: UIImageView!
+    @IBOutlet weak var imageDelete: UIImageView!
+    
+    @IBOutlet weak var recordingView: UIView!
+    
+    
+    @IBOutlet weak var buttonSendAudio: UIButton!
+    
+    @IBOutlet weak var viewRecordButton: UIView!
+    @IBOutlet weak var viewSendButton: UIView!
+    
+    
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var msgTextField: UITextView!
@@ -210,6 +249,9 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.callReceiveMessageInBGMode(_:)), name: NSNotification.Name(rawValue: "callReceiveMessageInBG"), object: nil)
         imagePickerMulti = ImagePicker(presentationController: self, delegate: self)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePlayAudioTapped(_:)), name: .playAudioTapped, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNoLoginPlayAudioTapped(_:)), name: .playNoLoginAudioTapped, object: nil)
 
     
     }
@@ -409,6 +451,13 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
         let nib7 = UINib(nibName: "SystemsTVCell", bundle: bundle)
         self.chatTableView.register(nib7, forCellReuseIdentifier: SystemsTVCell)
         
+        let nib8 = UINib(nibName: "AudioPlayerTVCell", bundle: bundle)
+        self.chatTableView.register(nib8, forCellReuseIdentifier: cellForAudioPlayerLoginUser)
+        
+        let nib9 = UINib(nibName: "AudioPlayerNoLoginUserTVCell", bundle: bundle)
+        self.chatTableView.register(nib9, forCellReuseIdentifier: cellForAudioPlayerNoLoginUser)
+        
+        
         
         //self.chatTableView.register(UINib(nibName: "ConversationTableViewCellNoLoginUser", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         //self.chatTableView.register(UINib(nibName: "ConversationLoginUserTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifierLoginUser)
@@ -510,6 +559,82 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
         }
        
     }
+    
+    @IBAction func actionShowAudioView(_ sender: UIButton) {
+        // Request microphone permission
+        AVAudioSession.sharedInstance().requestRecordPermission { [weak self] granted in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                if granted {
+                    // If permission is granted, toggle recording state
+                    if self.audioRecorder == nil || !(self.audioRecorder?.isRecording ?? false) {
+                        self.recordingView.isHidden = false
+                        self.startRecording()
+                    } else {
+                        self.stopRecording()
+                    }
+                } else {
+                    // If permission is not granted, request it and show an alert
+                    self.showPermissionAlert()
+                }
+            }
+        }
+    }
+    
+    @IBAction func actionSendAudio(_ sender: UIButton) {
+        audioRecorder?.stop()
+        self.voiceDuration = self.timeLabel.text ?? ""
+        self.recordingView.isHidden = true
+        self.timeLabel.text = "00:00"
+        if let fileURL = audioRecorder?.url {
+            // Pass the recorded audio file URL to finalFile function
+            getAudioFile(urls: [fileURL])
+        }
+        audioRecorder = nil
+        btnPlayPause.setTitle("Record", for: .normal)
+        timerAudio?.invalidate()
+    }
+    
+    @IBAction func actionDeleteTapped(_ sender: UIButton) {
+        self.recordingView.isHidden = true
+        audioRecorder?.stop()
+        self.voiceDuration = self.timeLabel.text ?? ""
+        self.recordingView.isHidden = true
+        self.timeLabel.text = "00:00"
+        audioRecorder = nil
+        btnPlayPause.setTitle("Record", for: .normal)
+        timerAudio?.invalidate()
+    }
+    
+    @IBAction func actionStopResumeTapped(_ sender: UIButton) {
+        stopRecording()
+    }
+    
+    @IBAction func actionPlayPause(_ sender: UIButton) {
+        // Request microphone permission
+        AVAudioSession.sharedInstance().requestRecordPermission { [weak self] granted in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                if granted {
+                    // If permission is granted, toggle recording state
+                    if self.audioRecorder == nil || !(self.audioRecorder?.isRecording ?? false) {
+                        self.recordingView.isHidden = false
+                        self.startRecording()
+                    } else {
+                        self.stopRecording()
+                    }
+                } else {
+                    // If permission is not granted, request it and show an alert
+                    self.showPermissionAlert()
+                }
+            }
+        }
+    }
+    
+    
+    
     
     private func appendNewChatMessage(conversationsByUUID: ConversationsByUUID, isAddedToDB : Bool) {
         
@@ -1362,7 +1487,41 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
                                     }
                                     self.showDownloadIconFileLoginUser(uitableVc: aCell, position: indexPath.row)
                                     return aCell
-                                }else {
+                                }else if self.conversationArrayList[indexPath.row].files?[0].type == "mp4" || self.conversationArrayList[indexPath.row].files?[0].type == "application/mp4" || self.conversationArrayList[indexPath.row].files?[0].type == "mp3" || self.conversationArrayList[indexPath.row].files?[0].type == "application/mp3"{
+                                    //View Audio type view for reciever
+                                    
+                                    let aCell = self.chatTableView.dequeueReusableCell(withIdentifier: self.cellForAudioPlayerLoginUser,for: indexPath) as! AudioPlayerTVCell
+                                    aCell.buttonPlay.tag = indexPath.row
+                                    aCell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
+                                    aCell.durationLabel.text = self.conversationArrayList[indexPath.row].voiceDuration ?? "0:00"
+                                    aCell.lblTIme.text = self.utcToLocal(dateStr: self.conversationArrayList[indexPath.row].timestamp ?? "")
+                                    //aCell.labelNamee.text = CustomUserDefaultChat.sheard.getOrganizationName()
+                                    aCell.setTableData(conversationArrayList: self.conversationArrayList, index: indexPath.row)
+                                    aCell.buttonPlay.addTarget(self, action: #selector(playPauseAction(_:)), for: .touchUpInside)
+                                    
+                                    if self.conversationArrayList[indexPath.row].isNotNewChat == true{
+                                        if self.conversationArrayList[indexPath.row].isUpdateStatus == true{
+                                            if self.conversationArrayList[indexPath.row].isSeen! {
+                                                aCell.ivFileStatus.image = loadImageFromPodBundle(named: "read_reciept") // UIImage(named: "read_reciept")
+                                            }else{
+                                                aCell.ivFileStatus.image = loadImageFromPodBundle(named: "tick") //UIImage(named: "tick")
+                                                
+                                            }
+                                        }else{
+                                            aCell.ivFileStatus.image = loadImageFromPodBundle(named: "send_messagetime") //UIImage(named: "send_messagetime")
+                                        }
+                                    }else{
+                                        if self.conversationArrayList[indexPath.row].isSeen! {
+                                            aCell.ivFileStatus.image = loadImageFromPodBundle(named: "read_reciept") //UIImage(named: "read_reciept")
+                                        }else{
+                                            aCell.ivFileStatus.image = loadImageFromPodBundle(named: "tick") //UIImage(named: "tick")
+                                        }
+                                    }
+                                    
+                                    return aCell
+                                    
+                                }
+                                else {
                                     
                                     let aCell = self.chatTableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifierCellImageLoginUser,for: indexPath) as! ConversationCellImageLoginUser
                                     aCell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
@@ -1668,25 +1827,39 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
                                 //self.convertIsoStrigToDate(strDate: self.conversationArrayList[indexPath.row].timestamp!)
                                 self.showDownloadIconFileNonLoginUser(uitableVc: aCell, position: indexPath.row)
                                 return aCell
-                            }else if self.conversationArrayList[indexPath.row].files?[0].type == "mp4" || self.conversationArrayList[indexPath.row].files?[0].type == "application/mp4" || self.conversationArrayList[indexPath.row].files?[0].type == "mp3" || self.conversationArrayList[indexPath.row].files?[0].type == "application/mp3" || self.conversationArrayList[indexPath.row].files?[0].type == "m4a" || self.conversationArrayList[indexPath.row].files?[0].type == "application/m4a"{//"m4a"
+                            }else if self.conversationArrayList[indexPath.row].files?[0].type == "mp4" || self.conversationArrayList[indexPath.row].files?[0].type == "application/mp4" || self.conversationArrayList[indexPath.row].files?[0].type == "mp3" || self.conversationArrayList[indexPath.row].files?[0].type == "application/mp3"{
                                 //View Audio type view for reciever
                                 
-                                let aCell = self.chatTableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifierCellFIleForNonLoginUser,for: indexPath) as! ConversationCellFileNonLoginUser
+                                let aCell = self.chatTableView.dequeueReusableCell(withIdentifier: self.cellForAudioPlayerNoLoginUser,for: indexPath) as! AudioPlayerNoLoginUserTVCell
+                                aCell.buttonPlay.tag = indexPath.row
                                 aCell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
-                                aCell.ivImageIcon.image = loadImageFromPodBundle(named: "mp3")
-                                //aCell.ivImageIcon.image = UIImage(named: "csv")
-                                aCell.lblFileName.text = self.conversationArrayList[indexPath.row].content!
-                                aCell.lblTime.text = self.utcToLocal(dateStr: self.conversationArrayList[indexPath.row].timestamp ?? "")
-                                if self.conversationArrayList[indexPath.row].caption != "" && self.conversationArrayList[indexPath.row].caption != nil{
-                                    aCell.labelCaption.isHidden = false
-                                    aCell.labelCaption.text = self.conversationArrayList[indexPath.row].caption ?? ""
+                                aCell.durationLabel.text = self.conversationArrayList[indexPath.row].voiceDuration ?? "0:00"
+                                aCell.lblTIme.text = self.utcToLocal(dateStr: self.conversationArrayList[indexPath.row].timestamp ?? "")
+                                aCell.labelNamee.text = CustomUserDefaultChat.sheard.getOrganizationName()
+                                aCell.setTableData(conversationArrayList: self.conversationArrayList, index: indexPath.row)
+                                aCell.buttonPlay.addTarget(self, action: #selector(playPauseAction(_:)), for: .touchUpInside)
+                                
+                                if self.conversationArrayList[indexPath.row].isNotNewChat == true{
+                                    if self.conversationArrayList[indexPath.row].isUpdateStatus == true{
+                                        if self.conversationArrayList[indexPath.row].isSeen! {
+                                            aCell.ivFileStatus.image = UIImage(named: "read_reciept")
+                                        }else{
+                                            aCell.ivFileStatus.image = UIImage(named: "tick")
+                                            
+                                        }
+                                    }else{
+                                        aCell.ivFileStatus.image = UIImage(named: "send_messagetime")
+                                    }
                                 }else{
-                                    aCell.labelCaption.isHidden = true
-                                    aCell.labelCaption.text = ""
+                                    if self.conversationArrayList[indexPath.row].isSeen! {
+                                        aCell.ivFileStatus.image = UIImage(named: "read_reciept")
+                                    }else{
+                                        aCell.ivFileStatus.image = UIImage(named: "tick")
+                                    }
                                 }
-                                //self.convertIsoStrigToDate(strDate: self.conversationArrayList[indexPath.row].timestamp!)
-                                self.showDownloadIconFileNonLoginUser(uitableVc: aCell, position: indexPath.row)
+                                
                                 return aCell
+                                
                             }
                             else {
                                 
@@ -1731,7 +1904,7 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
                     //login user view type call here
 //                    //login user view type call here
                     let aCell = self.chatTableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifierLoginUser,for: indexPath) as! ConversationLoginUserTableViewCell
-                    aCell.lblMessage.text = self.conversationArrayList[indexPath.row].content!
+                    aCell.lblMessage.text = self.conversationArrayList[indexPath.row].content ?? ""
                     aCell.lblTimeDate.text = self.utcToLocal(dateStr: self.conversationArrayList[indexPath.row].timestamp ?? "")
                     //self.convertIsoStrigToDate(strDate: self.conversationArrayList[indexPath.row].timestamp!)
                     aCell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
@@ -1764,7 +1937,7 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
                 }else{
                     //reciever view type call here
                     let aCell = self.chatTableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier,for: indexPath) as! ConversationTableViewCellNoLoginUser
-                    aCell.lblMessage.text = self.conversationArrayList[indexPath.row].content!
+                    aCell.lblMessage.text = self.conversationArrayList[indexPath.row].content ?? ""
                     aCell.lblTimeDate.text = self.utcToLocal(dateStr: self.conversationArrayList[indexPath.row].timestamp ?? "")
                     //self.convertIsoStrigToDate(strDate: self.conversationArrayList[indexPath.row].timestamp!)
                     aCell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
@@ -1782,8 +1955,8 @@ public class ChatViewController: UIViewController, UITableViewDelegate, UITableV
                                 aCell.lblNameFirstLetter.text = self.getFirstLetterOfString(username: CustomUserDefaultChat.sheard.getOrganizationName())
                             }
                         }else{
-                            aCell.lblName.text = self.conversationArrayList[indexPath.row].sender!
-                            aCell.lblNameFirstLetter.text = self.getFirstLetterOfString(username: self.conversationArrayList[indexPath.row].sender!)
+                            aCell.lblName.text = self.conversationArrayList[indexPath.row].sender ?? ""
+                            aCell.lblNameFirstLetter.text = self.getFirstLetterOfString(username: self.conversationArrayList[indexPath.row].sender ?? "")
                         }
                         
                     }
@@ -1879,7 +2052,15 @@ extension ChatViewController{
 //        return 50
 //    }
 }
-
+extension ChatViewController{
+    
+    // MARK: - Button Action
+    @objc func playPauseAction(_ sender: UIButton) {
+        let rowIndex = sender.tag
+        print("Button in row \(rowIndex) tapped")
+    }
+    
+}
 
 class ChatHubConnectionDelegate: HubConnectionDelegate {
 
@@ -2077,7 +2258,7 @@ extension ChatViewController {
                 var messageStr = UserDefaults.standard.value(forKey: "messageStr") as? String ?? ""
                 var sendMessageModel : NewChatMessage = NewChatMessage();
                 sendMessageModel.agentId = self.agentId;
-                sendMessageModel.tempChatId = self.filesNames[i].tempChatId!
+                sendMessageModel.tempChatId = self.filesNames[i].tempChatId ?? ""
                 sendMessageModel.conversationUId = self.conversationUuID
                 sendMessageModel.connectionId = CustomUserDefaultChat.sheard.getsaveConnectionId()
                 sendMessageModel.customerId = self.cusId ;
@@ -2206,6 +2387,65 @@ extension ChatViewController {
         */
     }
     
+    //MARK: - Send Audio Message
+    func sendAudioMessage(duration : String){
+        if !self.fileUploadArrayList.isEmpty{
+            for i in 0 ..< self.filesNames.count{
+                self.indexCurrent = i
+                var messageStr = UserDefaults.standard.value(forKey: "messageStr") as? String ?? ""
+                var sendMessageModel : NewChatMessage = NewChatMessage();
+                sendMessageModel.agentId = self.agentId;
+                sendMessageModel.tempChatId = self.filesNames[i].tempChatId ?? ""
+                sendMessageModel.conversationUId = self.conversationUuID
+                sendMessageModel.connectionId = CustomUserDefaultChat.sheard.getsaveConnectionId()
+                sendMessageModel.customerId = self.cusId ;
+                sendMessageModel.contactNo = self.customerMobileNumber;
+                sendMessageModel.name = self.customerName ;
+                sendMessageModel.cnic = self.customerCNIC;
+                sendMessageModel.emailaddress = self.customerEmail;
+                sendMessageModel.message = self.filesNames[i].fileName ?? ""
+                sendMessageModel.documentOrignalname = self.filesNames[i].fileName ?? ""
+                sendMessageModel.documentName = self.filesNames[i].fileName ?? ""
+                sendMessageModel.documentType = self.filesNames[i].mimeType
+                sendMessageModel.fileUri = self.filesNames[i].url ?? ""
+                sendMessageModel.source = "Mobile_IOS" ;
+                sendMessageModel.isFromWidget = true ;
+                sendMessageModel.type = "file";
+                sendMessageModel.channelid = self.channelId;
+                sendMessageModel.notifyMessage = "";
+                sendMessageModel.mobileToken = self.fcmtoken;
+                sendMessageModel.caption = self.filesNames[i].message ?? ""
+                sendMessageModel.voiceDuration = duration
+                self.fileUploadArrayList[i].caption = self.filesNames[i].message ?? ""
+                
+                //                sendMessageModel.createdOn = self.getCurrentDateAndTime()
+                sendMessageModel.callerAppType = Int64(UtilsClassChat.sheard.callerAppType)
+                self.addTempItemToList(sendMessageModel: sendMessageModel, isAddedToDB: true)
+            }
+            if(Reachability.isConnectedToNetwork()){
+//                self.swapCaptionData()
+                   
+                self.uploadFilesToServer(conversationUUId: self.conversationUuID, multipartList: self.fileUploadArrayList,tempChatIdStr: self.filesNames[0].tempChatId!)
+            }else{
+                for i in 0 ..< self.filesNames.count{
+                    if let position = self.conversationArrayList.firstIndex(where: {$0.tempChatId == self.filesNames[i].tempChatId ?? ""}){
+                        print(position)
+                        self.conversationArrayList[position].isReceived = false
+                        self.conversationArrayList[position].isFailed = true
+                        self.conversationArrayList[position].isShowLocalFiles = true
+                        self.dbChatObj.updateFailedStatus(tempChatId: self.conversationArrayList[position].tempChatId ?? "", isFailed: self.conversationArrayList[position].isFailed ?? false)
+                        //self.dbChatObj.saveChatIntoData(isUpdateById: false, pageNumber: self.pageNumber, conversation: self.conversationArrayList[position])
+                        self.chatTableView.reloadRows(at: [IndexPath(row: position, section: 0)], with: .automatic)
+                    }
+                }
+                self.fileUploadArrayList.removeAll()
+                self.filesNames.removeAll()
+            }
+            
+                        
+        }
+    }
+    
     func connectSignalR(resultToken : String ){
         self.chatHubConnection = HubConnectionBuilder(url: URL(string: serverUrl)!)
             .withLogging(minLogLevel: .debug)
@@ -2234,7 +2474,7 @@ extension ChatViewController {
             self?.chatHubConnection!.start()
         }
     }
-    //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDaGFubmVsaWQiOiJmMjZhMzNkOS01YjJlLTQyMjctYTQ1Ni1lYWI0NTkyNGExZDMiLCJqdGkiOiIxNTQwODBhMy0wMGIyLTQ1YzUtYmRjNy00ODA1NGRjMGFkNDYiLCJuYmYiOjE3MjE4MDY1MjgsImV4cCI6MTcyMzEwMjUyOCwiaWF0IjoxNzIxODA2NTI4LCJpc3MiOiJlbWxhYWtmaW5hbmNpYWxzLmNvbSIsImF1ZCI6ImVtbGFha2ZpbmFuY2lhbHMuY29tIn0.MKthPjFkybnqXmmKyoey6cZNpXfQDWDVsHQjEMQRogU
+   
     func getAccessToken(isCalledFromReconnect: Bool,channelId:String,serverUrl: String){
         ApiClient.sheard.getAccessTokenByChannelId(channelId:channelId, onSuccess: { [self]
             (sucess) in
@@ -2852,6 +3092,7 @@ extension ChatViewController {
                     sendMessageModel.isWelcomeMessage = type == "welcomeMessage" ? true : false
                     sendMessageModel.topicId = Int64(topicId)
                     sendMessageModel.topicMessage = topicMessage
+                    sendMessageModel.voiceDuration = self.voiceDuration ?? ""
                     //                sendMessageModel.createdOn = getCurrentDateAndTime()
                     sendMessageModel.timestamp = getCurretDateTime()
                     sendMessageModel.callerAppType = Int64(UtilsClassChat.sheard.callerAppType)
@@ -2887,6 +3128,7 @@ extension ChatViewController {
             sendMessageModel.topicId = Int64(topicId)
             sendMessageModel.topicMessage = topicMessage
             sendMessageModel.timestamp = getCurretDateTime()
+            sendMessageModel.voiceDuration = self.voiceDuration ?? ""
             sendMessageModel.callerAppType = Int64(UtilsClassChat.sheard.callerAppType)
             let conversation = self.addSendMessageTemp(recieveMessage: sendMessageModel)
             
@@ -2936,6 +3178,7 @@ extension ChatViewController {
                 sendMessageModel.timezone = UtilsClassChat.sheard.getCurrentLocalTimeZone()
                 sendMessageModel.timestamp = conversation.timestamp //self.timeStamp //getCurretDateTime()
                 sendMessageModel.caption = conversation.caption
+                sendMessageModel.voiceDuration = self.voiceDuration ?? ""
                     //send message
                 self.chatHubConnection?.send(method: "SendPrivateMessage",sendMessageModel, true)
                 
@@ -2966,6 +3209,7 @@ extension ChatViewController {
             sendMessageModel.pageName = ""
             sendMessageModel.timezone = UtilsClassChat.sheard.getCurrentLocalTimeZone()
             sendMessageModel.timestamp = conversation.timestamp //self.timeStamp //getCurretDateTime()
+            sendMessageModel.voiceDuration = self.voiceDuration ?? ""
             sendMessageModel.caption = UserDefaults.standard.value(forKey: "messageStr") as? String ?? ""
             //send message
             self.chatHubConnection?.send(method: "SendPrivateMessage",sendMessageModel, true)
@@ -3270,31 +3514,32 @@ extension ChatViewController {
         conversationByUID.conversationType = recieveMessage.type == "file" ? "multimedia" : "text"
         conversationByUID.type = recieveMessage.type!
         conversationByUID.tempChatId = recieveMessage.tempChatId ?? ""
-        conversationByUID.conversationUid = recieveMessage.conversationUid!
-        conversationByUID.toUserId = recieveMessage.toUserId!
-        conversationByUID.customerName = recieveMessage.customerName!
-        conversationByUID.sender = recieveMessage.sender!
-        conversationByUID.agentId = recieveMessage.agentId
-        conversationByUID.customerId = recieveMessage.customerId!
-        conversationByUID.content = recieveMessage.content!
+        conversationByUID.conversationUid = recieveMessage.conversationUid ?? ""
+        conversationByUID.toUserId = recieveMessage.toUserId ?? 0
+        conversationByUID.customerName = recieveMessage.customerName ?? ""
+        conversationByUID.sender = recieveMessage.sender ?? ""
+        conversationByUID.agentId = recieveMessage.agentId ?? 0
+        conversationByUID.customerId = recieveMessage.customerId ?? 0
+        conversationByUID.content = recieveMessage.content ?? ""
         conversationByUID.files = recieveMessage.files!
         conversationByUID.fromUserId = recieveMessage.fromUserId
-        conversationByUID.isFromWidget = recieveMessage.isFromWidget!
-        conversationByUID.isPrivate = recieveMessage.isPrivate!
+        conversationByUID.isFromWidget = recieveMessage.isFromWidget
+        conversationByUID.isPrivate = recieveMessage.isPrivate
         conversationByUID.groupId = recieveMessage.groupId
         conversationByUID.groupName = recieveMessage.groupName
-        conversationByUID.timestamp = recieveMessage.timestamp!
+        conversationByUID.timestamp = recieveMessage.timestamp
         conversationByUID.receiver = recieveMessage.receiver
         conversationByUID.pageId = recieveMessage.pageId
         conversationByUID.pageName = recieveMessage.pageName
-        conversationByUID.tiggerevent = recieveMessage.tiggerevent!
-        conversationByUID.id = recieveMessage.id!
+        conversationByUID.tiggerevent = recieveMessage.tiggerevent
+        conversationByUID.id = recieveMessage.id ?? 0
         conversationByUID.isUpdateStatus = true
         conversationByUID.isNotNewChat = true
         conversationByUID.isSeen = false
         conversationByUID.caption = recieveMessage.caption ?? ""
         conversationByUID.isFailed = false
         conversationByUID.isReceived = true
+        conversationByUID.voiceDuration = recieveMessage.voiceDuration ?? ""
         conversationByUID.createdOn = convertTimeStampToDate(recieveMessage.timestamp ?? "")
         return conversationByUID
     }
@@ -3329,6 +3574,7 @@ extension ChatViewController {
         conversationByUID.caption = recieveMessage.caption ?? ""
         conversationByUID.isFailed = false
         conversationByUID.isReceived = true
+        conversationByUID.voiceDuration = recieveMessage.voiceDuration ?? ""
 //        conversationByUID.createdOn = convertTimeStampToDate(recieveMessage.timestamp ?? "")
         return conversationByUID
     }
@@ -3342,7 +3588,7 @@ extension ChatViewController {
         conversationByUID.conversationUid = recieveMessage.conversationUid!
         conversationByUID.toUserId = recieveMessage.toUserId!
         conversationByUID.customerName = recieveMessage.customerName!
-        conversationByUID.sender = recieveMessage.sender!
+        conversationByUID.sender = recieveMessage.sender ?? ""
         conversationByUID.agentId = recieveMessage.agentId
         conversationByUID.customerId = recieveMessage.customerId!
         conversationByUID.content = recieveMessage.content!
@@ -3361,6 +3607,7 @@ extension ChatViewController {
         conversationByUID.isNotNewChat = true
         conversationByUID.isSeen = false
         conversationByUID.caption = recieveMessage.caption ?? ""
+        conversationByUID.voiceDuration = recieveMessage.voiceDuration ?? ""
         conversationByUID.isFailed = false
         conversationByUID.createdOn = recieveMessage.createdOn
 //        conversationByUID.createdOn = convertTimeStampToDate(recieveMessage.timestamp ?? "")
@@ -3671,6 +3918,67 @@ extension ChatViewController :  UIImagePickerControllerDelegate, UINavigationCon
                 }
             })
             
+        }
+    }
+    
+    func getAudioFile(urls: [URL]) {
+        if urls.count <= 5 {
+            var fileExtension = ""
+            var fileNameWithoutExtension = ""
+            var strBase64 = ""
+            var mimeType = ""
+            var fileURlStr = ""
+
+            if urls.count > 0 {
+                for i in 0..<urls.count {
+                    let fileURL = urls[i]
+                    
+                    
+                    
+                    fileExtension = fileURL.pathExtension
+                    fileNameWithoutExtension = fileURL.lastPathComponent
+                    
+                    do {
+                        let data = try Data(contentsOf: fileURL)
+                        var uploadFilesDataModel = UploadFilesDataModel()
+                        var fileDataClass = FileDataClass()
+                        fileURlStr = fileURL.path
+                        
+                        if fileExtension == "jpg" || fileExtension == "jpeg" || fileExtension == "png" {
+                            mimeType = "image/\(fileExtension)"
+                        } else if fileExtension == "m4a" || fileExtension == "aac" || fileExtension == "mp3" || fileExtension == "mp4"{
+                            mimeType = "application/mp4" //"audio/\(fileExtension)"
+                        } else {
+                            mimeType = "application/\(fileExtension)"
+                        }
+                        
+                        let tempChatID = generateUuID()
+                        strBase64 = data.base64EncodedString()
+
+                        uploadFilesDataModel.file = strBase64
+                        uploadFilesDataModel.fileName = fileNameWithoutExtension
+                        uploadFilesDataModel.contentType = mimeType
+                        uploadFilesDataModel.tempChatID = tempChatID
+                        uploadFilesDataModel.conversationUId = self.conversationUuID
+                        uploadFilesDataModel.caption = ""
+                        
+                        fileDataClass.fileName = fileNameWithoutExtension
+                        fileDataClass.fileSizes = "\(UtilsClassChat.sheard.fileSize(fromPath: fileURL.path) ?? "")"
+                        fileDataClass.url = fileURL.absoluteString
+                        fileDataClass.tempChatId = tempChatID
+                        fileDataClass.mimeType = mimeType
+                        fileDataClass.fileLocalUri = strBase64
+
+                        fileUploadArrayList.append(uploadFilesDataModel)
+                        filesNames.append(fileDataClass)
+                        
+                        self.sendAudioMessage(duration: self.voiceDuration)
+                        
+                    } catch {
+                        print("Error reading file data: \(error)")
+                    }
+                }
+            }
         }
     }
 
@@ -4326,3 +4634,151 @@ extension ChatViewController : SendFeedbackProtocol{
     
     
 }
+extension ChatViewController : AVAudioRecorderDelegate {
+    func showPermissionAlert() {
+        let alert = UIAlertController(title: "Microphone Permission Denied",
+                                      message: "Please enable microphone access in Settings.",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Allow", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func recordButtonTapped() {
+        if audioRecorder == nil || !(audioRecorder?.isRecording ?? false) {
+            startRecording()
+        } else {
+            stopRecording()
+        }
+    }
+    
+    func startRecording() {
+        // Set up the audio session
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(.playAndRecord, mode: .default)
+            try audioSession.setActive(true)
+            
+            // Set up the audio recorder
+            let settings = [
+                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+                AVSampleRateKey: 12000,
+                AVNumberOfChannelsKey: 1,
+                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+            ]
+            
+            let fileName = self.generateRecordingString()
+            let fileURL = getDocumentsDirectory().appendingPathComponent("\(fileName).m4a")
+            audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
+            audioRecorder?.delegate = self
+            audioRecorder?.record()
+            
+            // Update UI
+            //btnPlayPause.setTitle("Stop", for: .normal)
+            DispatchQueue.main.async{ [self] in
+                viewRecord.isHidden = true
+                viewSendAudio.isHidden = false
+                recordingView.isHidden = false
+                seconds = 0
+                timeLabel.text = "00:00"
+            }
+            timerAudio = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateLabel), userInfo: nil, repeats: true)
+        } catch {
+            // Handle the error
+            stopRecording()
+        }
+    }
+    
+    func stopRecording() {
+        audioRecorder?.stop()
+        audioRecorder = nil
+        btnPlayPause.setTitle("Record", for: .normal)
+        timerAudio?.invalidate()
+    }
+    
+    @objc func updateLabel() {
+        
+        seconds += 1
+        let minutes = seconds / 60
+        let seconds = seconds % 60
+        DispatchQueue.main.async{
+            self.timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func generateRecordingString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd_HHmmss"
+        let currentDate = dateFormatter.string(from: Date())
+        
+        let recordingString = "recording_\(currentDate)"
+        return recordingString
+    }
+    
+}
+extension ChatViewController {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if self.msgTextField.text.isEmpty{
+            self.recordingView.isHidden = true
+            self.viewRecordButton.isHidden = false
+            self.viewSendButton.isHidden = true
+        }else{
+            self.recordingView.isHidden = true
+            self.viewRecordButton.isHidden = true
+            self.viewSendButton.isHidden = false
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if msgTextField.text.isEmpty{
+            
+        }
+        self.recordingView.isHidden = true
+        self.viewRecordButton.isHidden = true
+        self.viewSendButton.isHidden = false
+    }
+    
+    
+}
+extension ChatViewController{
+    @objc private func handleNoLoginPlayAudioTapped(_ notification: Notification) {
+        guard let newPlayingCell = notification.object as? AudioPlayerNoLoginUserTVCell else { return }
+        
+        // Stop the previous cell (NoLogin or regular) if there is one and it's not the same as the new cell
+        if let previousCell = currentlyPlayingCell, previousCell != newPlayingCell {
+            if let noLoginCell = previousCell as? AudioPlayerNoLoginUserTVCell {
+                noLoginCell.stopAudio()
+            } else if let regularCell = previousCell as? AudioPlayerTVCell {
+                regularCell.stopAudio()
+            }
+        }
+        
+        // Set the new cell as the currently playing cell
+        self.currentlyPlayingCell = newPlayingCell
+        
+    }
+    
+    @objc private func handlePlayAudioTapped(_ notification: Notification) {
+        //guard let newPlayingCell = notification.object as? AudioPlayerTVCell else { return }
+        
+        guard let newCell = notification.object as? AudioPlayerTVCell else { return }
+        
+        // Stop the previous cell (NoLogin or regular) if there is one and it's not the same as the new cell
+        if let previousCell = currentlyPlayingCell, previousCell != newCell {
+            if let noLoginCell = previousCell as? AudioPlayerNoLoginUserTVCell {
+                noLoginCell.stopAudio()
+            } else if let regularCell = previousCell as? AudioPlayerTVCell {
+                regularCell.stopAudio()
+            }
+        }
+        
+        // Set the new cell as the currently playing cell
+        self.currentlyPlayingCell = newCell
+        
+    }
+}
+

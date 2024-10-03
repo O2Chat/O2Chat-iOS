@@ -42,5 +42,6 @@ struct NewChatMessage: Codable {
     var topicMessage : String?
     var createdOn : Date?
     var timestamp : String?
+    var voiceDuration : String = ""
     var callerAppType : Int64?
 }
