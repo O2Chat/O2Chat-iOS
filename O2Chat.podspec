@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'O2Chat'
-  s.version          = '0.1.4'
+  s.version          = '0.1.5'
   s.summary          = 'Connect, Chat, and Cherish'
 
 # This description is used to generate tags and improve search results.
@@ -28,26 +28,51 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/O2Chat/O2Chat-iOS.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '13.0'
   s.swift_version = '5.0'
   
+  s.pod_target_xcconfig = {
+  'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  }
   
-  s.source_files = 'Classes/**/*.{swift,h,m}'
-  s.resources = 'Resources/**/*.{storyboard,xib,xcassets,png,jpeg,jpg,gif}'
+  
+#  s.source_files = 'Classes/**/*.{swift,h,m}'
+#  s.resources = 'Resources/**/*.{storyboard,xib,xcassets,png,jpeg,jpg,gif}'
+
+  s.preserve_paths      = '**/O2Chat.xcframework'
+  s.vendored_frameworks = '**/O2Chat.xcframework'
   
   s.frameworks = ['UIKit', 'Foundation', 'AVFoundation', 'AudioToolbox', 'CoreMedia', 'ImageIO', 'QuickLook', 'SystemConfiguration', 'Security', 'Photos', 'CoreServices', 'QuickLook', 'MobileCoreServices']
   
+  s.static_framework = false
   
-  s.dependency 'Alamofire', '>= 4.0.0', '< 6.0'
-  s.dependency 'SwiftyJSON'
-  s.dependency 'FMDB'
-  s.dependency 'SwiftSignalRClient'
-  s.dependency 'IQKeyboardManager'
-  s.dependency 'Firebase/Core'
-  s.dependency 'Firebase/Messaging'
-  s.dependency 'Kingfisher'
+  s.subspec 'AlamofireSupport' do |sp|
+    sp.dependency 'Alamofire', '>= 5.0', '< 6.0'
+  end
   
-  s.dependency 'Cosmos'
+  s.subspec 'SwiftyJSONSupport' do |sp|
+    sp.dependency 'SwiftyJSON', '>= 5.0', '< 6.0'
+  end
+  
+  s.subspec 'FMDBSupport' do |sp|
+    sp.dependency 'FMDB', '>= 2.7', '< 3.0'
+  end
+  
+  s.subspec 'SwiftSignalRClientSupport' do |sp|
+    sp.dependency 'SwiftSignalRClient', '>= 0.8', '< 1.0'
+  end
+  
+  s.subspec 'FirebaseCoreSupport' do |sp|
+    sp.dependency 'Firebase/Core'
+  end
+  
+  s.subspec 'FirebaseMessagingSupport' do |sp|
+    sp.dependency 'Firebase/Messaging'
+  end
+  
+  s.subspec 'CosmosSupport' do |sp|
+    sp.dependency 'Cosmos', '>= 23.0', '< 24.0'
+  end
   
 #  s.ios.deployment_target = '10.0'
 #
