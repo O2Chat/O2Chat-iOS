@@ -1,0 +1,11 @@
+framework module O2Chat {
+  umbrella header "O2Chat.h"
+  export *
+
+  module * { export * }
+}
+
+module O2Chat.Swift {
+  header "O2Chat-Swift.h"
+  requires objc
+}
