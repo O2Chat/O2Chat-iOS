@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'O2Chat'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'Connect, Chat, and Cherish'
 
 # This description is used to generate tags and improve search results.
@@ -31,9 +31,9 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '13.0'
   s.swift_version = '5.0'
   
-  s.pod_target_xcconfig = {
-  'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-  }
+  #s.pod_target_xcconfig = {
+  #'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  #}
   
   
 #  s.source_files = 'Classes/**/*.{swift,h,m}'
@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
   
   s.frameworks = ['UIKit', 'Foundation', 'AVFoundation', 'AudioToolbox', 'CoreMedia', 'ImageIO', 'QuickLook', 'SystemConfiguration', 'Security', 'Photos', 'CoreServices', 'QuickLook', 'MobileCoreServices']
   
-  s.static_framework = false
+  s.static_framework = true
   
   s.subspec 'AlamofireSupport' do |sp|
     sp.dependency 'Alamofire', '>= 5.0', '< 6.0'
