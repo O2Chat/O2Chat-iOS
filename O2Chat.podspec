@@ -41,8 +41,8 @@ Pod::Spec.new do |s|
 
 #  s.module_name = 'O2Chat'
 
-  s.preserve_paths      = '**/O2Chat.xcframework'
-  s.vendored_frameworks = '**/O2Chat.xcframework'
+  s.preserve_paths      = '**/O2ChatSDK.xcframework'
+  s.vendored_frameworks = '**/O2ChatSDK.xcframework'
   
   s.frameworks = ['UIKit', 'Foundation', 'AVFoundation', 'AudioToolbox', 'CoreMedia', 'ImageIO', 'QuickLook', 'SystemConfiguration', 'Security', 'Photos', 'CoreServices', 'QuickLook', 'MobileCoreServices']
   
