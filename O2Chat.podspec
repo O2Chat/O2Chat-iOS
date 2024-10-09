@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'O2Chat'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'Connect, Chat, and Cherish'
 
 # This description is used to generate tags and improve search results.
@@ -38,6 +38,8 @@ Pod::Spec.new do |s|
   
 #  s.source_files = 'Classes/**/*.{swift,h,m}'
 #  s.resources = 'Resources/**/*.{storyboard,xib,xcassets,png,jpeg,jpg,gif}'
+
+  s.module_name = 'O2Chat'
 
   s.preserve_paths      = '**/O2ChatSDK.xcframework'
   s.vendored_frameworks = '**/O2ChatSDK.xcframework'
