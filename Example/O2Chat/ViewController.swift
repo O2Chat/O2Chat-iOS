@@ -7,20 +7,25 @@
 //
 
 import UIKit
-//import O2ChatSDK
+import O2ChatSDK
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+        // Do any additional setup after loading the view.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            //Provide Data
+            O2Chat.shared.presentO2ChatVC(from: self, customerName: "", customerEmail: "", customerPhone: "", customerCNIC: "", deviceTokenFCM: "", channelId: "")
+        })
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(_ animated: Bool) {
+        // Notify O2ChatManager that the app has finished launching If App Start From Terminated State
+        if O2Chat.shared.isAppLauncedFromKilledStateGetter() == true{
+            O2Chat.shared.isAppLauncedFromKilledStateSetter(value: false)
+            O2Chat.shared.presentChatViewControllerFromNotification(from: self)
+        }
     }
-
 }
 

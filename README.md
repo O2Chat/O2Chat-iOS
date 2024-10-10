@@ -1,6 +1,5 @@
 # O2Chat
 
-[![CI Status](https://img.shields.io/travis/sanjay.khatri02@outlook.com/O2Chat.svg?style=flat)](https://travis-ci.org/sanjay.khatri02@outlook.com/O2Chat)
 [![Version](https://img.shields.io/cocoapods/v/O2Chat.svg?style=flat)](https://cocoapods.org/pods/O2Chat)
 [![License](https://img.shields.io/cocoapods/l/O2Chat.svg?style=flat)](https://cocoapods.org/pods/O2Chat)
 [![Platform](https://img.shields.io/cocoapods/p/O2Chat.svg?style=flat)](https://cocoapods.org/pods/O2Chat)
@@ -19,6 +18,10 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'O2Chat', :tag => '0.2.4', :git => 'https://github.com/O2Chat/O2Chat-iOS.git'
 ```
+
+#### Samples
+
+[Example](https://github.com/O2Chat/O2Chat-iOS/tree/main/Example)
 
 ## Support
 
