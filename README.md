@@ -1,4 +1,6 @@
 # O2Chat
+![O2Chat : Swift](https://github.com/O2Chat/O2Chat-iOS/blob/main/Resource/O2ChatLogo.png)
+
 
 [![Version](https://img.shields.io/cocoapods/v/O2Chat.svg?style=flat)](https://cocoapods.org/pods/O2Chat)
 [![License](https://img.shields.io/cocoapods/l/O2Chat.svg?style=flat)](https://cocoapods.org/pods/O2Chat)
