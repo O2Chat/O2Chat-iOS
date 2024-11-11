@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'O2Chat'
-  s.version          = '0.2.8'
+  s.version          = '0.2.9'
   s.summary          = 'Connect, Chat, and Cherish'
 
 # This description is used to generate tags and improve search results.
@@ -30,10 +30,21 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '13.0'
   s.swift_version = '5.0'
+  s.platform = :ios, '13.0'
+
   
-  s.pod_target_xcconfig = {
-  'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-  }
+  #s.pod_target_xcconfig = {
+  #'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  #}
+  
+  # Architecture exclusion and linker flags
+    s.pod_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+      'OTHER_LDFLAGS' => '-ObjC'
+    }
+    s.user_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+    }
   
   
 #  s.source_files = 'Classes/**/*.{swift,h,m}'
