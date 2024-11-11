@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		045651BA2CBD3CF200FAAA5F /* O2ChatLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 045651B92CBD3CF200FAAA5F /* O2ChatLogo.png */; };
-		04655C312CE1D5830056D295 /* O2ChatSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04655C302CE1D5820056D295 /* O2ChatSDK.xcframework */; };
+		04655D5B2CE219010056D295 /* O2ChatSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04655D5A2CE219000056D295 /* O2ChatSDK.xcframework */; };
 		17413E5B898B87AE9D835718EFE49DA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		20A5699D6F9E901DB8DD73C87A69C840 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		4350F5F4B0B437F98C28AED689FC70C1 /* O2Chat-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CBB8F992E377377F90DDBA3767A6D4 /* O2Chat-dummy.m */; };
@@ -39,7 +39,7 @@
 
 /* Begin PBXFileReference section */
 		045651B92CBD3CF200FAAA5F /* O2ChatLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = O2ChatLogo.png; sourceTree = "<group>"; };
-		04655C302CE1D5820056D295 /* O2ChatSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = O2ChatSDK.xcframework; sourceTree = "<group>"; };
+		04655D5A2CE219000056D295 /* O2ChatSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = O2ChatSDK.xcframework; sourceTree = "<group>"; };
 		060F2E859FFEBD9BFF1EB20369586FEF /* O2Chat-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "O2Chat-umbrella.h"; sourceTree = "<group>"; };
 		082E089BBC4D46DAA95C14AF3293DA42 /* Pods-O2Chat_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-O2Chat_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		0AB57BBE9F11D42135DD68BCFFF6BDC9 /* O2Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = O2Chat.release.xcconfig; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17413E5B898B87AE9D835718EFE49DA5 /* Foundation.framework in Frameworks */,
-				04655C312CE1D5830056D295 /* O2ChatSDK.xcframework in Frameworks */,
+				04655D5B2CE219010056D295 /* O2ChatSDK.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				045651B82CBD3C5300FAAA5F /* Resource */,
-				04655C302CE1D5820056D295 /* O2ChatSDK.xcframework */,
+				04655D5A2CE219000056D295 /* O2ChatSDK.xcframework */,
 				26D5876AC8C4AAEE3FAFF3A6EC658062 /* Pod */,
 				60AB268A8067A56D061B7F6835702306 /* Support Files */,
 			);
