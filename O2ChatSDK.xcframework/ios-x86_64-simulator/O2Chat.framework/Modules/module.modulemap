@@ -1,0 +1,4 @@
+framework module O2Chat {
+  header "O2Chat-Swift.h"
+  requires objc
+}
