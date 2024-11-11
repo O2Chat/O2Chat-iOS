@@ -134,15 +134,15 @@
 		</data>
 		<key>Modules/O2Chat.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		K6mJjbxqIQrQVOFQslpeu5j7TPg=
+		29+vRMLM1LvEcxirdBuXPh6bZs8=
 		</data>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		uOFsseOFSdbp6WEvLa/mlVfX2Jo=
+		26xv7e8vCFngaHK2WL9hVAkEpu4=
 		</data>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		WjxsuaNsfnOYW9yMWVYY4Jm6b50=
+		8+JMcm9ZKLRs/WMOFyryU64HxzY=
 		</data>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -150,11 +150,11 @@
 		</data>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		WjxsuaNsfnOYW9yMWVYY4Jm6b50=
+		8+JMcm9ZKLRs/WMOFyryU64HxzY=
 		</data>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		jPY7+iLBFZDQaEowCAq5EGkUbKI=
+		TthTsW+3e0prWgViIeG1hhrdhNU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -412,21 +412,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mblH8DT7x3BC0igJtZW8o4gmN1oftPyywgjOxv/QQ5E=
+			jrM53Fiy7ATdhQnPyOLMSYif+k9su8HOcoKO71MOFJE=
 			</data>
 		</dict>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3ypM0pzcN6xokkmvXsDmFb4mZno6oWGUEm8l/YSzFlk=
+			kVrPdR6GLWRTTE9/rHEChe3uVswf3SAhf0sOT5o+rw4=
 			</data>
 		</dict>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bGD9K2MMFV4N99bbQYmyEJPX3MpXwqFoGQgmf3Zf6AE=
+			cNU3tgosAJm57ib7h2GauJS9qzhrfXadt9avuBY5Cl8=
 			</data>
 		</dict>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -440,14 +440,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			bGD9K2MMFV4N99bbQYmyEJPX3MpXwqFoGQgmf3Zf6AE=
+			cNU3tgosAJm57ib7h2GauJS9qzhrfXadt9avuBY5Cl8=
 			</data>
 		</dict>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3FUzM8s1qNx/6tp1/PnHMsypTYbOW1pveXKkLHJPE98=
+			uzO6Oz3TG8O8izKTNtQ9OLNyERREAL6nRqxxcs6c/Xw=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

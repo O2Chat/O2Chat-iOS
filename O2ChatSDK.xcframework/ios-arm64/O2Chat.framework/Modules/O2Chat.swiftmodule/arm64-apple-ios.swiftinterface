@@ -194,8 +194,8 @@ public struct BUSINESSTAXFORMNEW {
 }
 public struct NAVBARCOLOR {
 }
-@_hasMissingDesignatedInitializers public class O2Chat {
-  public static let shared: O2Chat.O2Chat
+@_hasMissingDesignatedInitializers public class O2ChatManager {
+  public static let shared: O2Chat.O2ChatManager
   public var HeaderColor: UIKit.UIColor
   public var BackIconColor: UIKit.UIColor
   public var LabelHeadingColor: UIKit.UIColor
