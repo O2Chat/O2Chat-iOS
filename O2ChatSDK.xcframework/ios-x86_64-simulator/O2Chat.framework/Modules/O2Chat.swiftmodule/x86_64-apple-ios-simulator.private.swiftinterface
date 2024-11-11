@@ -121,7 +121,6 @@ extension UIKit.UIImage {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
   @objc deinit
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func traitCollectionDidChange(_ previousTraitCollection: UIKit.UITraitCollection?)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidDisappear(_ animated: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
@@ -194,11 +193,8 @@ public struct BUSINESSTAXFORMNEW {
 }
 public struct NAVBARCOLOR {
 }
-@_hasMissingDesignatedInitializers public class O2ChatManager {
-  public static let shared: O2Chat.O2ChatManager
-  public var HeaderColor: UIKit.UIColor
-  public var BackIconColor: UIKit.UIColor
-  public var LabelHeadingColor: UIKit.UIColor
+@_hasMissingDesignatedInitializers public class O2Chat {
+  public static let shared: O2Chat.O2Chat
   public func presentO2ChatVC(from viewController: UIKit.UIViewController, customerName: Swift.String, customerEmail: Swift.String, customerPhone: Swift.String, customerCNIC: Swift.String, deviceTokenFCM: Swift.String, channelId: Swift.String)
   public func presentChatViewControllerFromNotification(from viewController: UIKit.UIViewController)
   public func handleRemoteNotification(_ info: [Swift.AnyHashable : Any], appState: UIKit.UIApplication.State)

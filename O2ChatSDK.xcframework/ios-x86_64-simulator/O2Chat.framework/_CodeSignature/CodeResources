@@ -10,7 +10,7 @@
 		</data>
 		<key>Alamofire.bundle/Info.plist</key>
 		<data>
-		6H0tPOvqZUWA1KwKDaQE5lfhMvs=
+		fPe3yRLU5ZoxrxlTXGJc/sXRw3E=
 		</data>
 		<key>Alamofire.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -62,11 +62,11 @@
 		</data>
 		<key>Headers/O2Chat-Swift.h</key>
 		<data>
-		NGu0KbcUdEnAoBgT62z5/mrTSyQ=
+		kjX+SuyElC8xashc4XroEHl9RPU=
 		</data>
 		<key>Headers/O2ChatSDK.h</key>
 		<data>
-		BJ1OmQump1nyZYW6ESuUipRvi3I=
+		yqG9xTGJi7F+jo1aGUPqF9xPVGQ=
 		</data>
 		<key>IQKeyboardManager.bundle/Info.plist</key>
 		<data>
@@ -134,15 +134,15 @@
 		</data>
 		<key>Modules/O2Chat.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		29+vRMLM1LvEcxirdBuXPh6bZs8=
+		j6NhpnPSUnUwC6SlNUCgAO9ubTU=
 		</data>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		26xv7e8vCFngaHK2WL9hVAkEpu4=
+		ZAjv4zBUVieeluxA9j5rdV2OfcA=
 		</data>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		8+JMcm9ZKLRs/WMOFyryU64HxzY=
+		kPyodMsXv9XtJxQVTs9LoPq0I4Q=
 		</data>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -150,11 +150,11 @@
 		</data>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		8+JMcm9ZKLRs/WMOFyryU64HxzY=
+		kPyodMsXv9XtJxQVTs9LoPq0I4Q=
 		</data>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		TthTsW+3e0prWgViIeG1hhrdhNU=
+		MlRKfJiWknujE75idEy5wCDU1H4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -202,7 +202,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Owu+XQlnBguQYDMsTlee7uiAtunnCRsZCqt4xlf7Mdg=
+			FfIX7kpqJTJ/4beYSCdo5pY7Iezrkx8KDvphmwoYARU=
 			</data>
 		</dict>
 		<key>Alamofire.bundle/PrivacyInfo.xcprivacy</key>
@@ -293,14 +293,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			oXIuefjJis9mxIB7KPnkruqWyn37PQrPFGbC3q4053g=
+			Zn9lV9ll4tzKCUK7Hz7UPajXIJEdNUfWNKkExFIjjaQ=
 			</data>
 		</dict>
 		<key>Headers/O2ChatSDK.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cs48CtSL9iGcjFHHfbXlmCZ9rtxnyDDuyQn2IogZKcQ=
+			Nxzq0vPG4gzioBS/w+xw1s7LjH+y4eaCc1qYZbTo/Wc=
 			</data>
 		</dict>
 		<key>IQKeyboardManager.bundle/Info.plist</key>
@@ -412,21 +412,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jrM53Fiy7ATdhQnPyOLMSYif+k9su8HOcoKO71MOFJE=
+			S3u2QFDGRGqoIHoLC9P5oAV/BMVItjnybaf7VEQYtaI=
 			</data>
 		</dict>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kVrPdR6GLWRTTE9/rHEChe3uVswf3SAhf0sOT5o+rw4=
+			Gf3YrKE9AsKm9kD3D9KEWsqKV7iE94WGcRmSwJ4/hvc=
 			</data>
 		</dict>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cNU3tgosAJm57ib7h2GauJS9qzhrfXadt9avuBY5Cl8=
+			EqtC6UmqJmfqm3QSdgoq6fgVByVOZcuhn00y0C2z6sw=
 			</data>
 		</dict>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -440,14 +440,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			cNU3tgosAJm57ib7h2GauJS9qzhrfXadt9avuBY5Cl8=
+			EqtC6UmqJmfqm3QSdgoq6fgVByVOZcuhn00y0C2z6sw=
 			</data>
 		</dict>
 		<key>Modules/O2Chat.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uzO6Oz3TG8O8izKTNtQ9OLNyERREAL6nRqxxcs6c/Xw=
+			RRMQUAj43KuCbJNr2A/QUq4K6gMVc0m37XmPP3E47og=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
