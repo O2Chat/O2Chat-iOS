@@ -1,0 +1,5 @@
+ extern const unsigned char O2ChatVersionString[];
+ extern const double O2ChatVersionNumber;
+
+ const unsigned char O2ChatVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:O2Chat  PROJECT:Pods-1" "\n";
+ const double O2ChatVersionNumber __attribute__ ((used)) = (double)1.;
