@@ -302,6 +302,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 
 #if defined(__OBJC__)
+@class UITraitCollection;
 @class UITableView;
 @class NSIndexPath;
 @class UITableViewCell;
@@ -313,6 +314,7 @@ SWIFT_CLASS("_TtC9O2ChatSDK18ChatViewController")
 @interface ChatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)animated;
+- (void)traitCollectionDidChange:(UITraitCollection * _Nullable)previousTraitCollection;
 - (void)viewDidAppear:(BOOL)animated;
 - (void)viewDidDisappear:(BOOL)animated;
 - (void)viewWillDisappear:(BOOL)animated;

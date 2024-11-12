@@ -18,39 +18,39 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		9lM2I6SGJci2uqiAUD8BGBg4T8w=
+		9O7Jx7eTbWjWLqwblNQ2xCkRjfY=
 		</data>
 		<key>AudioPlayerNoLoginUserTVCell.nib</key>
 		<data>
-		HL4+g8t/8VQT5UGZFOah1Y+X4C0=
+		m28t3F6aIyWzs7diNwmoUGocWKU=
 		</data>
 		<key>AudioPlayerTVCell.nib</key>
 		<data>
-		YsClkwC4ZMRfANsCqnGyImVARzo=
+		7FZMLq8AWm7i/30D40pdVKzzhhk=
 		</data>
 		<key>ConversationCellFIleForLoginUser.nib</key>
 		<data>
-		gMXtDHC3cQFdfoigxTiJ7V34nw0=
+		4EdccQZBqhBeyt2nzaG1/61j5Ak=
 		</data>
 		<key>ConversationCellFileNonLoginUser.nib</key>
 		<data>
-		PhvneT1aMaFIOL7HB7XB2eCN4P4=
+		eyaeFVxKMbLFkZ1D3kQEdR1liuA=
 		</data>
 		<key>ConversationCellImageLoginUser.nib</key>
 		<data>
-		VEXTY4ITihgAO1oRdLzYaWLoq+8=
+		kr+FLW4gMDwFwuvrllNaAHTUiF4=
 		</data>
 		<key>ConversationCellImageNoLoginUser.nib</key>
 		<data>
-		LvD/FkFXzfRmBv/dNhQpp/DibTc=
+		6bP7wm4sD0VwOmpUYZWdxmqsvDU=
 		</data>
 		<key>ConversationLoginUserTableViewCell.nib</key>
 		<data>
-		WfMxAVKSugsYhDHXKUaFCGp00qk=
+		bGhgmGvmru+/5lVQDTrPMhdcaLQ=
 		</data>
 		<key>ConversationTableViewCellNoLoginUser.nib</key>
 		<data>
-		nUNEqYxtTCQu31t+N5lUrM5IX9I=
+		TVfPAq9OyGizUH2h7WrxLvrXKNE=
 		</data>
 		<key>FMDB_Privacy.bundle/Info.plist</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Headers/O2ChatSDK-Swift.h</key>
 		<data>
-		UNKIRUJkklaz95RztyEPU9j6Pg8=
+		pUmbFvltZ1jC9/Z2ua9LmIJKL2o=
 		</data>
 		<key>Headers/O2ChatSDK.h</key>
 		<data>
@@ -82,19 +82,19 @@
 		</data>
 		<key>MainChat.storyboardc/2bZ-Fh-QGx-view-3Y0-9T-DtI.nib/objects-14.0+.nib</key>
 		<data>
-		dKhXTeAxTTVDSpERGSO4m7iEExk=
+		O04mu0zcMToTzPo/Gjn4x5U0pBw=
 		</data>
 		<key>MainChat.storyboardc/2bZ-Fh-QGx-view-3Y0-9T-DtI.nib/runtime.nib</key>
 		<data>
-		dKhXTeAxTTVDSpERGSO4m7iEExk=
+		O04mu0zcMToTzPo/Gjn4x5U0pBw=
 		</data>
 		<key>MainChat.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib/objects-14.0+.nib</key>
 		<data>
-		1pzU3znjvrghBusO58B/MuIo+nk=
+		fbVZV+/Rx2mBDHJilzkA7O3hxEY=
 		</data>
 		<key>MainChat.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib/runtime.nib</key>
 		<data>
-		1bhexCP4u1e4EgPlkW2ccCPD9lA=
+		AfgS5Z7FS2cq7WVoJKqTa84yVgs=
 		</data>
 		<key>MainChat.storyboardc/ChatViewController.nib/objects-14.0+.nib</key>
 		<data>
@@ -134,27 +134,27 @@
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		f7To79u8eBKFfLDc4InFwyKIZ1c=
+		J+XRq62SbXm1p65dKdt9AhOZCIc=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		R6ZlOBcWOEpi2lovM4E6LbEnfZo=
+		JWBzwbwcsmc6MzavV865H/FssWw=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		xknMtiVNWdDtExK1ZqhtE9hYBQM=
+		UtGoyKw5VHBdv8WJsYS6kYTROpc=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		Pwyf5Z7KynQvpLt76rTLdgEaEUE=
+		MlzCdEXJSRRPtKtTAvfxdTqnT60=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		xknMtiVNWdDtExK1ZqhtE9hYBQM=
+		UtGoyKw5VHBdv8WJsYS6kYTROpc=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		+yfdBmCHWttztPBhy1j4ZcFa6aE=
+		DTUAJLOMSCseIZJrCFFN7EE5Y5A=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -216,63 +216,63 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			lXx4he9XbDW6ydN2QnqWbCmyI/8fKQ/8o3ZRfvTt+kw=
+			WD3M0e9t3ngctbL9qyzQEf2SjpRMLLci1gDux7oAO5Q=
 			</data>
 		</dict>
 		<key>AudioPlayerNoLoginUserTVCell.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+YkOj2zw6UQ2af3Ve6XjlHInQ1w3I8B8lg/dQ27PzEo=
+			dBFRd1dlEi8/X5IMrViJOwdMyywLTZKczKR2dnTtO5Q=
 			</data>
 		</dict>
 		<key>AudioPlayerTVCell.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RwOLUg/YzTak0OZgctPUAB1IH+ua7P+liVZn4U2E5uM=
+			BUx/nMPKrrxW/UhOm+uCpFyLCizQw4T4hKF/ioKfs6c=
 			</data>
 		</dict>
 		<key>ConversationCellFIleForLoginUser.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ufNMUnxQa+kbW2pAitjr9PgdwumSVd+n62PzYtJrIQ8=
+			1JalY7dXorcGSOlCYwzltPB6pIQKWQzAzOvUrvr0Ddw=
 			</data>
 		</dict>
 		<key>ConversationCellFileNonLoginUser.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+F1djxHQmZ8NFdag49KhYREHyiIPC4OSg7HwLDLW6iw=
+			gru44gj+jP75ohMl2mWmQOafcu4ydovaM2vhVCPBACU=
 			</data>
 		</dict>
 		<key>ConversationCellImageLoginUser.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Wj4oEdF6HrCw5MXLaT4mM3VuL2crXa/nnCKMJjENObk=
+			u7KlYSjCIt8ZePJWh0HUsvy1PjZrMcoOuqq/LobzwRE=
 			</data>
 		</dict>
 		<key>ConversationCellImageNoLoginUser.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pK+nSJHxuTzNzoxVO1wFOq3NS3xhQwsKKHEKuUrxRSI=
+			hukByZ87mtyBhSXb9CuP3GHqe1WX2g2/zzrr0zUdCQc=
 			</data>
 		</dict>
 		<key>ConversationLoginUserTableViewCell.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wuvHaaNrv+enpMtUUBdAQdhFiRB3b3NpUY/MsRSgkS0=
+			dOHVMBfUd8I8ZA869ucfNrogUWmtTGefDNkXUxOCQPY=
 			</data>
 		</dict>
 		<key>ConversationTableViewCellNoLoginUser.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hoAbcxcCBu5CHG8MXko9YHN2f2360RYnA8OZL/EZ0vU=
+			3z81s4nJfYis18cZADuXKNrj2ipTafvuQyQRBN7b108=
 			</data>
 		</dict>
 		<key>FMDB_Privacy.bundle/Info.plist</key>
@@ -293,7 +293,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			r6T5pexCl1WN/dndfKYbgTOxiHodWEThKTKCdqH6Gog=
+			ASx9trC0mzN3KutqtwLVocuwg3j8aQVf0jZkSr87n9A=
 			</data>
 		</dict>
 		<key>Headers/O2ChatSDK.h</key>
@@ -321,28 +321,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			XHNjR/jQL3NRMovi7F7pJzA1KQFQ+K5lkf8ByLVeJOU=
+			XsMqzm+T0LpXZjNNeF4fKEIXiNSu+JQLUj0WeBRo58M=
 			</data>
 		</dict>
 		<key>MainChat.storyboardc/2bZ-Fh-QGx-view-3Y0-9T-DtI.nib/runtime.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XHNjR/jQL3NRMovi7F7pJzA1KQFQ+K5lkf8ByLVeJOU=
+			XsMqzm+T0LpXZjNNeF4fKEIXiNSu+JQLUj0WeBRo58M=
 			</data>
 		</dict>
 		<key>MainChat.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib/objects-14.0+.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5ab7jqwUhSjqeSqBop4CsYg+fQYUa86kOLtLWBOD6ug=
+			vlglqlxmSkoZpRZDxYRPleM9QPHfz6l12z6G8D+EDMM=
 			</data>
 		</dict>
 		<key>MainChat.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib/runtime.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lI3DlDa9OMJO2rSPmgjBPYGNMHtMTl0tQ0OzfTj+/ew=
+			RzXgNPgylurGNRYJBejVDAM2LjMAUPgqyi8ogbAR0tU=
 			</data>
 		</dict>
 		<key>MainChat.storyboardc/ChatViewController.nib/objects-14.0+.nib</key>
@@ -412,42 +412,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ao2e433y6abMsQRwFmDgzYOeLqEPheCootgK+J3v+DA=
+			7vaj1WzH9VlO0wjk2gWwLFrJ0m4sIs8koZh9KelCOCs=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			l/+9WTOaPTU1kVUOCLzyUWXUe38dl4duppspLX91Os0=
+			8sKF21e0nP9lG312zsmOZYgXa2nd2gx+i++IGjiOs8E=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pS/+rYk5Az1FNBPhzMT8xpIYOkda7q/bk9OAZJQ3tr8=
+			cGSdIvOiZVcRrShh6ob2d1dMjxnpRd4cYZCT3mUViwg=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Qg9vy8n+pnZ8Ps0gw+sBBTu5Nl+k+rf3xweC5plB57I=
+			f72RjUkLb0dvAhJzu4Iw6a9bkhvpnQNMA015sR7T0A8=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pS/+rYk5Az1FNBPhzMT8xpIYOkda7q/bk9OAZJQ3tr8=
+			cGSdIvOiZVcRrShh6ob2d1dMjxnpRd4cYZCT3mUViwg=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JWPeGYd4YM/WQRLtsQ8HEhQrxl/sbYmONoOKFDavNvs=
+			JakTb96BCJMO7roN6y+RJME/LNIkZ1M55HLTI+jMtpU=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
