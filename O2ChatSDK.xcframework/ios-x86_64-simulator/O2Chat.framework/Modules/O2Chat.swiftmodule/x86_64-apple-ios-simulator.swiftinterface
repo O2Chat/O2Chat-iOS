@@ -193,8 +193,8 @@ public struct BUSINESSTAXFORMNEW {
 }
 public struct NAVBARCOLOR {
 }
-@_hasMissingDesignatedInitializers public class O2Chat {
-  public static let shared: O2Chat.O2Chat
+@_hasMissingDesignatedInitializers public class O2ChatManager {
+  public static let shared: O2Chat.O2ChatManager
   public func presentO2ChatVC(from viewController: UIKit.UIViewController, customerName: Swift.String, customerEmail: Swift.String, customerPhone: Swift.String, customerCNIC: Swift.String, deviceTokenFCM: Swift.String, channelId: Swift.String)
   public func presentChatViewControllerFromNotification(from viewController: UIKit.UIViewController)
   public func handleRemoteNotification(_ info: [Swift.AnyHashable : Any], appState: UIKit.UIApplication.State)

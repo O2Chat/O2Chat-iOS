@@ -45,6 +45,8 @@ Pod::Spec.new do |s|
     s.user_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
     }
+    
+    
   
   
 #  s.source_files = 'Classes/**/*.{swift,h,m}'
