@@ -1,0 +1,215 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target arm64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name O2ChatSDK
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import AVFoundation
+import Alamofire
+import CoreMotion
+import Cosmos
+import DeveloperToolsSupport
+import FMDB
+import Foundation
+import ImageIO
+import MessageUI
+import MobileCoreServices
+@_exported import O2ChatSDK
+import ObjectiveC
+import PDFKit
+import Photos
+import PhotosUI
+import QuickLook
+import Swift
+import SwiftSignalRClient
+import SwiftUI
+import SwiftyJSON
+import SystemConfiguration
+import UIKit
+import UserNotifications
+import UserNotificationsUI
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public func makeToast(_ message: Swift.String?, duration: Foundation.TimeInterval = ToastManager.shared.duration, position: O2ChatSDK.ToastPosition = ToastManager.shared.position, title: Swift.String? = nil, image: UIKit.UIImage? = nil, style: O2ChatSDK.ToastStyle = ToastManager.shared.style, completion: ((_ didTap: Swift.Bool) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func makeToast(_ message: Swift.String?, duration: Foundation.TimeInterval = ToastManager.shared.duration, point: CoreFoundation.CGPoint, title: Swift.String?, image: UIKit.UIImage?, style: O2ChatSDK.ToastStyle = ToastManager.shared.style, completion: ((_ didTap: Swift.Bool) -> Swift.Void)?)
+  @_Concurrency.MainActor(unsafe) public func showToast(_ toast: UIKit.UIView, duration: Foundation.TimeInterval = ToastManager.shared.duration, position: O2ChatSDK.ToastPosition = ToastManager.shared.position, completion: ((_ didTap: Swift.Bool) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func showToast(_ toast: UIKit.UIView, duration: Foundation.TimeInterval = ToastManager.shared.duration, point: CoreFoundation.CGPoint, completion: ((_ didTap: Swift.Bool) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func make(toast: Swift.String, duration: Foundation.TimeInterval = ToastManager.shared.duration, completion: (() -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func hideToast()
+  @_Concurrency.MainActor(unsafe) public func hideToast(_ toast: UIKit.UIView)
+  @_Concurrency.MainActor(unsafe) public func hideAllToasts(includeActivity: Swift.Bool = false, clearQueue: Swift.Bool = true)
+  @_Concurrency.MainActor(unsafe) public func clearToastQueue()
+  @_Concurrency.MainActor(unsafe) public func makeToastActivity(_ position: O2ChatSDK.ToastPosition)
+  @_Concurrency.MainActor(unsafe) public func makeToastActivity(_ point: CoreFoundation.CGPoint)
+  @_Concurrency.MainActor(unsafe) public func hideToastActivity()
+  @_Concurrency.MainActor(unsafe) public func toastViewForMessage(_ message: Swift.String?, title: Swift.String?, image: UIKit.UIImage?, style: O2ChatSDK.ToastStyle) throws -> UIKit.UIView
+}
+public struct ToastStyle {
+  public init()
+  public var backgroundColor: UIKit.UIColor
+  public var titleColor: UIKit.UIColor
+  public var messageColor: UIKit.UIColor
+  public var maxWidthPercentage: CoreFoundation.CGFloat {
+    get
+    set
+  }
+  public var maxHeightPercentage: CoreFoundation.CGFloat {
+    get
+    set
+  }
+  public var horizontalPadding: CoreFoundation.CGFloat
+  public var verticalPadding: CoreFoundation.CGFloat
+  public var cornerRadius: CoreFoundation.CGFloat
+  public var titleFont: UIKit.UIFont
+  public var messageFont: UIKit.UIFont
+  public var titleAlignment: UIKit.NSTextAlignment
+  public var messageAlignment: UIKit.NSTextAlignment
+  public var titleNumberOfLines: Swift.Int
+  public var messageNumberOfLines: Swift.Int
+  public var displayShadow: Swift.Bool
+  public var shadowColor: UIKit.UIColor
+  public var shadowOpacity: Swift.Float {
+    get
+    set
+  }
+  public var shadowRadius: CoreFoundation.CGFloat
+  public var shadowOffset: CoreFoundation.CGSize
+  public var imageSize: CoreFoundation.CGSize
+  public var activitySize: CoreFoundation.CGSize
+  public var fadeDuration: Swift.Double
+  public var activityIndicatorColor: UIKit.UIColor
+  public var activityBackgroundColor: UIKit.UIColor
+}
+@_hasMissingDesignatedInitializers public class ToastManager {
+  public static let shared: O2ChatSDK.ToastManager
+  public var style: O2ChatSDK.ToastStyle
+  public var isTapToDismissEnabled: Swift.Bool
+  public var isQueueEnabled: Swift.Bool
+  public var duration: Swift.Double
+  public var position: O2ChatSDK.ToastPosition
+  @objc deinit
+}
+public enum ToastPosition {
+  case top
+  case center
+  case bottom
+  public static func == (a: O2ChatSDK.ToastPosition, b: O2ChatSDK.ToastPosition) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class Network {
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers open class Reachability {
+  @objc deinit
+}
+extension UIKit.UIImageView {
+  @_Concurrency.MainActor(unsafe) public func loadGif(name: Swift.String)
+  @available(iOS 9.0, *)
+  @_Concurrency.MainActor(unsafe) public func loadGif(asset: Swift.String)
+}
+extension UIKit.UIImage {
+  public class func gif(data: Foundation.Data) -> UIKit.UIImage?
+  public class func gif(url: Swift.String) -> UIKit.UIImage?
+  public class func gif(name: Swift.String) -> UIKit.UIImage?
+  @available(iOS 9.0, *)
+  public class func gif(asset: Swift.String) -> UIKit.UIImage?
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class ChatViewController : UIKit.UIViewController, UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func traitCollectionDidChange(_ previousTraitCollection: UIKit.UITraitCollection?)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func didReceiveMemoryWarning()
+  @_Concurrency.MainActor(unsafe) @objc public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor(unsafe) @objc public func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor(unsafe) @objc public func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor(unsafe) @objc public func tableView(_ tableView: UIKit.UITableView, willDisplay cell: UIKit.UITableViewCell, forRowAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+extension O2ChatSDK.ChatViewController : UIKit.UITextViewDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textViewDidChange(_ textView: UIKit.UITextView)
+}
+extension O2ChatSDK.ChatViewController : UIKit.UIImagePickerControllerDelegate, UIKit.UINavigationControllerDelegate, UIKit.UIDocumentPickerDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func documentPicker(_ controller: UIKit.UIDocumentPickerViewController, didPickDocumentsAt urls: [Foundation.URL])
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func imagePickerController(_ picker: UIKit.UIImagePickerController, didFinishPickingMediaWithInfo info: [UIKit.UIImagePickerController.InfoKey : Any])
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func imagePickerControllerDidCancel(_ picker: UIKit.UIImagePickerController)
+}
+extension O2ChatSDK.ChatViewController : UIKit.UIActionSheetDelegate {
+}
+extension O2ChatSDK.ChatViewController : QuickLook.QLPreviewControllerDataSource {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func numberOfPreviewItems(in controller: QuickLook.QLPreviewController) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func previewController(_ controller: QuickLook.QLPreviewController, previewItemAt index: Swift.Int) -> any QuickLook.QLPreviewItem
+}
+extension O2ChatSDK.ChatViewController : UIKit.UICollectionViewDelegate, UIKit.UICollectionViewDataSource {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, didSelectItemAt indexPath: Foundation.IndexPath)
+}
+extension O2ChatSDK.ChatViewController : UIKit.UICollectionViewDelegateFlowLayout {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, sizeForItemAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGSize
+}
+extension O2ChatSDK.ChatViewController : AVFAudio.AVAudioRecorderDelegate {
+}
+extension O2ChatSDK.ChatViewController {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textViewDidEndEditing(_ textView: UIKit.UITextView)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textViewDidBeginEditing(_ textView: UIKit.UITextView)
+}
+public struct EmailTo {
+}
+public struct FamilyAccountBean {
+}
+public struct BusinessAccountBean {
+}
+public struct BusinessTaxUploadBean {
+}
+public struct BusinessTaxBean {
+}
+public struct ERROR_MESSAGE {
+}
+public struct MESSAGE {
+}
+public struct CATEGORIES {
+}
+public struct MENU {
+}
+public struct BUSINESSINCORPORATION {
+}
+public struct HEADER {
+}
+public struct OTHER {
+}
+public struct USASERVICES {
+}
+public struct BUSINESSTAXFORM {
+}
+public struct BUSINESSTAXFORMNEW {
+}
+public struct NAVBARCOLOR {
+}
+@_hasMissingDesignatedInitializers public class O2Chat {
+  public static let shared: O2ChatSDK.O2Chat
+  public var HeaderColor: UIKit.UIColor
+  public var BackIconColor: UIKit.UIColor
+  public var LabelHeadingColor: UIKit.UIColor
+  public func presentO2ChatVC(from viewController: UIKit.UIViewController, customerName: Swift.String, customerEmail: Swift.String, customerPhone: Swift.String, customerCNIC: Swift.String, deviceTokenFCM: Swift.String, channelId: Swift.String)
+  public func presentChatViewControllerFromNotification(from viewController: UIKit.UIViewController)
+  public func handleRemoteNotification(_ info: [Swift.AnyHashable : Any], appState: UIKit.UIApplication.State)
+  public func createDatabase()
+  public func appDidFinishLaunching()
+  public func isAppLauncedFromKilledStateSetter(value: Swift.Bool)
+  public func isAppLauncedFromKilledStateGetter() -> Swift.Bool
+  public func logOutUser()
+  public func isO2ChatWidgetNotification(_ info: [Swift.AnyHashable : Any]) -> Swift.Bool
+  @objc deinit
+}
+extension O2ChatSDK.ToastPosition : Swift.Equatable {}
+extension O2ChatSDK.ToastPosition : Swift.Hashable {}
