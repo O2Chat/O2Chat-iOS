@@ -18,7 +18,7 @@ O2Chat is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'O2Chat', :tag => '0.2.4', :git => 'https://github.com/O2Chat/O2Chat-iOS.git'
+pod 'O2Chat', :tag => '0.3.3', :git => 'https://github.com/O2Chat/O2Chat-iOS.git'
 ```
 
 #### Samples
