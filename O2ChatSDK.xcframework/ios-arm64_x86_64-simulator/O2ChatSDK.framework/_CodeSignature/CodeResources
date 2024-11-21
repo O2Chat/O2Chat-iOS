@@ -50,7 +50,7 @@
 		</data>
 		<key>ConversationTableViewCellNoLoginUser.nib</key>
 		<data>
-		TVfPAq9OyGizUH2h7WrxLvrXKNE=
+		Op+25Qq9afW6KaM3crkkA5+N9Vk=
 		</data>
 		<key>FMDB_Privacy.bundle/Info.plist</key>
 		<data>
@@ -134,19 +134,19 @@
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		eJEm/TF0x7wTBv4vePKAVPb5oDI=
+		007YNHCxZMuiKNU3d3U08pa1NJc=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		7SXdnTrRiqAKIQMwCFA2T2FE3Ec=
+		9GJxgkr9GG5YFwNpbu33JL7sOYE=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		LUVKzffxSQEKvQq+uyy9nf3oxuo=
+		TlNmH1iwq93aD/u6B29oAc+N9TU=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		KfHxmbSFn2l/Z78C7wm2BblTyDo=
+		pGbbevOGVS0Twmx5ljbrHsRoVf4=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -154,19 +154,19 @@
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		KfHxmbSFn2l/Z78C7wm2BblTyDo=
+		pGbbevOGVS0Twmx5ljbrHsRoVf4=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		S44jnDmlUsksyX+C8g5iEBTr7z0=
+		Z8eiBlXjnVNRIxNPFN4jNI+q0H0=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		LUVKzffxSQEKvQq+uyy9nf3oxuo=
+		TlNmH1iwq93aD/u6B29oAc+N9TU=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		p3ARj9PyEr2gK2lE4p/TpcVEBG8=
+		KTzxGKlR/YpeLQNUpEr+xJiGRfw=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -174,11 +174,11 @@
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		p3ARj9PyEr2gK2lE4p/TpcVEBG8=
+		KTzxGKlR/YpeLQNUpEr+xJiGRfw=
 		</data>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		A2yuw06yEwp90oP8aYmSmQp+uwA=
+		vs06dB+wkBmc+O8HFZ+wvE0AFBM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -296,7 +296,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3z81s4nJfYis18cZADuXKNrj2ipTafvuQyQRBN7b108=
+			FVZLQ0yt+xmSHobitMPZgT/WNRmJW/w6hDRBq0AuEDI=
 			</data>
 		</dict>
 		<key>FMDB_Privacy.bundle/Info.plist</key>
@@ -436,28 +436,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4QACfrDcx9sOE9x5qzmE2k8a4qmBI73Q9L7GQwlRJgw=
+			OHCRYZT3T3/hFjdHL6Yh4NJ7Xfs1den9cTqr64ElQUM=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			OyCbofpfD+BlDcitQG9YOeWYFJRzx9uDWughlGb4rS8=
+			XyumUVY2OIDv5GWLm6rcGba5kZs1KinuY74fTwbL3Tc=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2NU5LTvcHO9+pxsOxnm9DGQprJqi9v32X0KItskEX40=
+			KGhyER4vEmdX6Z2Wrg0qtx4x8m46/Ycs9oLUe6KF8uo=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			svervSJOYpRLH+njhzC4aqwPKytC7dUZwpOCKCMTg2k=
+			9mY3zitdVhyNQZ0tBkrZy1RVqTukIqVDAFpNFFZGCVk=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -471,28 +471,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			svervSJOYpRLH+njhzC4aqwPKytC7dUZwpOCKCMTg2k=
+			9mY3zitdVhyNQZ0tBkrZy1RVqTukIqVDAFpNFFZGCVk=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WGbJQwxMWvl7lZ4egOYJMMFKCcq2OPBIOMbYam4wQts=
+			E4+xCBZ91/CqCFNJMrX34ljXPzf3+BnQdk+81OZwDRI=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2NU5LTvcHO9+pxsOxnm9DGQprJqi9v32X0KItskEX40=
+			KGhyER4vEmdX6Z2Wrg0qtx4x8m46/Ycs9oLUe6KF8uo=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rQuSwhIyovKqMiQoIJ96/3Hap80bOoCuF7dD/4L8Rjw=
+			LSy1CDQHnsgi3rlc/9NgSspdgx2dZHaML/CE37UzbVo=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -506,14 +506,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rQuSwhIyovKqMiQoIJ96/3Hap80bOoCuF7dD/4L8Rjw=
+			LSy1CDQHnsgi3rlc/9NgSspdgx2dZHaML/CE37UzbVo=
 			</data>
 		</dict>
 		<key>Modules/O2ChatSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sq0BYfnJ6pXQCv/pZEiPUS6bVZE+DbX9T3wsJiVXDqQ=
+			GPykziltM8DfdU0/WmVreH9GogsAm469VrhDB2Zrauo=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

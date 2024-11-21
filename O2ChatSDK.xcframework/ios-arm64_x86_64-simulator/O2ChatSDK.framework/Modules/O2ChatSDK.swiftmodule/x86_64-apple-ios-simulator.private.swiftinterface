@@ -207,6 +207,8 @@ public struct NAVBARCOLOR {
   public func appDidFinishLaunching()
   public func isAppLauncedFromKilledStateSetter(value: Swift.Bool)
   public func isAppLauncedFromKilledStateGetter() -> Swift.Bool
+  public func deleteDatabase()
+  public func deleteUserProfile()
   public func logOutUser()
   public func isO2ChatWidgetNotification(_ info: [Swift.AnyHashable : Any]) -> Swift.Bool
   @objc deinit
